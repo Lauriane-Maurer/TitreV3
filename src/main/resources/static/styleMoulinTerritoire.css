@@ -1,0 +1,131 @@
+
+.territoire-header {
+    background-color: #ffba07;
+    height: 160px;
+}
+
+.territoire-header h1 {
+    margin-top:114px;
+    margin-left: 80px;
+    font-family: Arial, sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.territoire-main{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 50px 50px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+
+.territoire-texte{
+    width: 30%;
+    line-height: 2;
+    text-align: justify;
+    padding-right: 20px;
+
+}
+
+.territoire-carte{
+    width: 70%;
+    padding-left: 10px;
+}
+
+
+/* Style for the positioning of the map */
+#mapid{
+    margin: 10px auto 20px auto;
+    height: 300px;
+    width: 100%;
+}
+
+
+/* Style for the table container */
+.table-container {
+    overflow-y: scroll;
+    height: 400px;
+}
+
+
+.tableau {
+    width: 95%;
+    margin: 10px auto 100px auto;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.haut-tableau {
+    position: sticky;
+    background-color: white;
+    top: 0;
+    margin-top: -10px;
+    z-index: 1;
+}
+
+.en-tete-tableau {
+    padding: 10px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.sortable:hover {
+    cursor: pointer;
+}
+
+/* Style for the table cells */
+.cellule {
+    padding: 10px;
+}
+
+/* Style for the odd lines of the table */
+tbody tr:nth-child(odd) {
+    background-color: lightgrey;
+}
+
+
+@media (max-width: 768px) {
+    .territoire-body{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .territoire-header {
+        background-color: #ffba07;
+        height: 100px;
+    }
+
+    .territoire-header h1{
+        font-size: 40px;
+        margin-top:63px;
+        margin-left: 20px;
+    }
+
+    .territoire-main{
+        flex-direction: column;
+    }
+
+    .territoire-texte{
+        width: 100%;
+        padding-right: 5px;
+    }
+
+    .territoire-carte{
+        width: 100%;
+        padding-left: 5px;
+    }
+
+    .tableau {
+        width: 100%;
+    }
+}
+
+@media (max-width: 330px) {
+
+    .territoire-header h1{
+        font-size: 30px;
+    }
+}

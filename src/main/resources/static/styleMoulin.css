@@ -1,0 +1,12 @@
+body{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    font-family: arial, sans-serif;
+    overflow-y: auto; /* affiche la barre de défilement verticale */
+    transition: all 0.5s ease-in-out; /* ajoute une transition fluide */
+}
+
+body.menu-open {
+    overflow: hidden; /* empêche le défilement de la page lorsque le menu est ouvert */
+}

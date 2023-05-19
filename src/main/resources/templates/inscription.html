@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styleMoulin.css">
+    <link rel="stylesheet" href="/styleMoulinNavbar.css">
+    <link rel="stylesheet" href="/styleMoulinLogin.css">
+    <title>Inscription</title>
+</head>
+
+<body>
+
+<div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+
+<main class="login-container">
+
+    <h1 class="login-titre">S'inscrire</h1>
+    <form class="col" th:object="${user}" th:action="@{/inscription}" method="post">
+
+        <div class="error" th:if="${#fields.hasGlobalErrors()}">
+            <p th:each="error : ${#fields.globalErrors()}" th:text="${error}"></p>
+        </div>
+
+        <div class="login-form">
+            <input class="login-item" id="firstname" type="text" name="firstname" placeholder="firstname" th:field="*{firstname}">
+            <input class="login-item" id="login" type="text" name="login" placeholder="Username" th:field="*{login}">
+            <span class="error" th:errors="*{login}">Error</span>
+
+            <input class="login-item" id="password" type="password" name="password" placeholder="Password" th:field="*{password}">
+            <span class="error" th:errors="*{password}">Error</span>
+
+            <input class="login-item" id="confirmPassword" type="password" name="confirmPassword" placeholder="Confirm password" th:field="*{confirmPassword}">
+            <span class="error" th:errors="*{confirmPassword}">Error</span>
+
+            <button class="login-button" type="submit" >Créer</button>
+            <button class="login-button-cancel" type="button"  onclick="window.location='/'">Annuler</button>
+        </div>
+        <div>
+            <p>Déjà membre? C'est par ici !</p>
+            <button class="login-registration-button" ><a href="/login">Se connecter</a></button>
+        </div>
+    </form>
+
+</main>
+
+</body>
+
+</html>

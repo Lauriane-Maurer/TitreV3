@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/styleMoulinNavbar.css">
+  <title>Fragment_nabvar</title>
+</head>
+
+<body>
+<header th:fragment="fragment_navbar">
+  <nav>
+    <label for="toggle">☰</label>
+    <input type="checkbox" id="toggle">
+    <div class="navbar">
+      <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/territoire">Territoire</a></li>
+        <li><a href="/programmation">Programmation</a></li>
+        <li sec:authorize="!isAuthenticated()">
+          <a th:href="@{/login}">Se connecter</a>
+        </li>
+        <li>
+                    <span sec:authorize="isAuthenticated()">
+                        <span sec:authorize="!hasRole('ADMIN')">
+                            Bienvenue <span sec:authentication="name"></span> ! |&nbsp;
+                            <a th:href="@{/participants/{username}(username=${#authentication.getName()})}">Mes événements</a> |&nbsp;
+                            <a th:href="@{/deconnexion}">Se déconnecter</a>
+                        </span>
+                        <span sec:authorize="hasRole('ADMIN')">
+                            <a th:href="@{/admin/gestionnaireAdmin}">Page Admin</a> |&nbsp;
+                            <a th:href="@{/deconnexion}">Se déconnecter</a>
+                        </span>
+                    </span>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+</body>
+</html>

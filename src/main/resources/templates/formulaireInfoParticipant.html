@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Informations Participant</title>
+</head>
+
+<body>
+<header>
+    <h1>Informations : </h1>
+</header>
+
+<main>
+    <form th:action="@{/InfoParticipant}" th:object="${participant}" method="post" >
+
+        <label>Prénom:</label>
+        <input type="text" th:field="*{prenom}" required/>
+
+        <label>Nom:</label>
+        <input type="text" th:field="*{nom}" required/>
+
+        <label>Téléphone:</label>
+        <input type="text" th:field="*{telephone}" required/>
+
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" required/>
+
+        <label>Code Postal:</label>
+        <input type="number" th:field="*{code_postal}" required/>
+        <input type="hidden" th:field="*{username}" th:value="${#authentication.getName()}"/>
+        <input type="number" th:field="*{id}" />
+        <input type="hidden" th:field="*{participantEvenements}" />
+        <input class="bouton-creation" type="submit" value="Enregistrer"/>
+    </form>
+</main>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styleMoulin.css">
+    <link rel="stylesheet" href="/styleMoulinNavbar.css">
+    <link rel="stylesheet" href="/styleMoulinPageAdmin.css">
+    <title>Gestionnaire Administrateur</title>
+</head>
+
+<body>
+
+<header class="pageAdmin-header">
+    <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+    <h1> Page Administrateur</h1>
+</header>
+
+<main class="pageAdmin-main">
+    <p> Que souhaitez-vous faire?</p>
+
+    <div class="pageAdmin-choix">
+        <ul>
+            <li><a th:href="@{/admin/listeEvenements}">Consulter et gérer la liste des évènements</a></li>
+            <li><a href="/creationEvenement">Créer un nouvel évènement</a></li>
+        </ul>
+    </div>
+</main>
+
+</body>
+
+</html>

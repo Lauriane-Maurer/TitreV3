@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styleMoulin.css">
+    <link rel="stylesheet" href="/styleMoulinIndex.css">
+    <link rel="stylesheet" href="/styleMoulinNavbar.css">
+    <title>Index</title>
+</head>
+
+<body>
+<div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+
+<header class="index-header">
+    <h1>Bienvenue au<br><span id="moulin-titre-index">Moulin</span></h1>
+</header>
+
+<main>
+
+    <section class="index-bienvenue" >
+        <div id="index-bienvenue-titre">
+            <h1>Un  lieu Re : Source Entre Terre Et Mer</h1>
+        </div>
+
+        <div id="index-bienvenue-texte">
+            <p id="index-bienvenue-p1">En créant le Moulin, Nathalie et Antoine ont réalisé leur rêve de créer un lieu hybride, un carrefour pour mettre en relation toutes les énergies locales:  la puissance de l’eau, du vent, et de la terre de ce coin du Finistère, associée  au dynamisme des acteurs locaux qui œuvrent tous les jours à créer un monde respectueux du vivant.</p>
+            <br>
+            <p id="index-bienvenue-p2">L’objectif du Moulin: créer des rencontres, promouvoir l’échange et le partage pour diffuser à travers l’organisation d’évènements des savoir-faire et des savoir-être dans un esprit décontracté et convivial. </p>
+        </div>
+    </section>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styleMoulin.css">
+    <link rel="stylesheet" href="/styleMoulinNavbar.css">
+    <link rel="stylesheet" href="/styleMoulinListeEvenementsParticipant.css">
+    <title>ListeEvenementsParticipant</title>
+</head>
+
+<body>
+<header class="ListeEvenementsParticipant-header">
+    <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+    <h1> Mes inscriptions</h1>
+</header>
+
+<main class="ListeEvenementsParticipant-main">
+    <p>Liste des événements auxquels vous êtes inscrit :</p>
+    <table class="ListeEvenementsParticipant-table">
+        <thead>
+        <tr>
+            <th class="colonne-titre">Titre</th>
+            <th class="colonne-description">Description</th>
+            <th class="colonne-date">Date et heure de debut</th>
+            <th class="colonne-date">Date et heure de fin</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="participant : ${participants}">
+            <tr>
+                <td class="cellule" th:text="${participant.evenement.getTitre()}"></td>
+                <td class="cellule" th:text="${participant.evenement.getDescription()}"></td>
+                <td class="cellule" th:text="${participant.evenement.getDateDebut()}"></td>
+                <td class="cellule" th:text="${participant.evenement.getDateFin()}"></td>
+                <td><button class="delete-button" type="button"  th:onclick="|window.location.href='@{/participants/delete/{id}(id=${participant.id})}'|">Annuler</button></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

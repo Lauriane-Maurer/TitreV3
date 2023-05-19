@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styleMoulin.css">
+    <link rel="stylesheet" href="/styleMoulinNavbar.css">
+    <link rel="stylesheet" href="/styleMoulinProgrammation.css">
+    <title>Programmation</title>
+</head>
+
+<body>
+
+<div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+
+<header class="programmation-header">
+    <h1>Le Programme</h1>
+    <h2>Les rendez-vous du <span id="moulin-titre-programmation">Moulin</span></h2>
+</header>
+
+<main>
+    <p class="programmation-texte">Le Moulin propose des ateliers à la demi-journée ou à la journée animés par des professionnels, des conférences sur des thèmes variés, des animations culturelles éphémères et des stages en pension complète. Pour découvrir le programme et réservez sa place, c’est par ici! </p>
+    <div class="programmation-affichage">
+        <div id="authName" th:text="${#authentication.getName()}"></div>
+        <div id="listings"></div>
+    </div>
+    <button class="bouton-creation" type="button" onclick="location.href='/creationEvenement'">Créer un évènement</button>
+</main>
+
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/Javascript/affichageEvenements.js"></script>
+
+</html>

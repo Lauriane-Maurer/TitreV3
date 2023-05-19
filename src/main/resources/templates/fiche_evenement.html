@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+      <meta charset="UTF-8">
+      <title>Title</title>
+  </head>
+
+  <body>
+    <header>
+
+    </header>
+    <main>
+        <h2  th:text="*{evenement.type}"></h2>
+        <h1 th:text="*{evenement.titre}"></h1>
+        <div>
+            <button><a th:href="@{/InscriptionParticipant/{eventId}/{username}(eventId=${evenement.id}, username=${#authentication.getName()})}">S'inscrire</a></button>
+        </div>
+
+
+    </main>
+
+  </body>
+</html>

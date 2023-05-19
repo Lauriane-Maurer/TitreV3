@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styleMoulin.css">
+    <link rel="stylesheet" href="/styleMoulinFormulaireEvenement.css">
+    <link rel="stylesheet" href="/styleMoulinNavbar.css">
+    <title>Formulaire_evenement</title>
+</head>
+
+<body>
+<header>
+    <h1>Créer un nouvel évènement au Moulin</h1>
+</header>
+
+<main>
+    <form class="creation" th:object="${evenement}" method="post" >
+
+        <div class="form-item">
+            <label>Type d'évènement :</label>
+            <input type="text" th:field="*{type}" required/>
+        </div>
+
+        <div class="form-item">
+            <label>Titre de l'évènement :</label>
+            <input type="text" th:field="*{titre}" required/>
+        </div>
+
+        <div class="form-item">
+            <label>Description de l'évènement :</label>
+            <input type="text" th:field="*{description}" required/>
+        </div>
+
+        <div class="form-item">
+            <label>Date et heure de début de l'évènement :</label>
+            <input type="datetime-local" th:field="*{dateDebut}" required/>
+        </div>
+
+        <div class="form-item">
+            <label>Date et heure de fin de l'évènement :</label>
+            <input type="datetime-local" th:field="*{dateFin}" required/>
+        </div>
+
+        <label>Nombre de places ouvertes :</label>
+        <input type="number" th:field="*{places_totales}" />
+        <br>
+
+        <label>Tarif :</label>
+        <input type="number" th:field="*{tarif}" />
+        <br>
+
+        <label>Intervenant.e.s :</label>
+        <input type="text" th:field="*{intervenant}" />
+        <br>
+
+        <label for="photo">Choisir une photo :</label>
+        <select id="photo" name="photo" th:field="*{photo}">
+            <option value="/photos/beachyoga.PNG">Beach Yoga</option>
+            <option value="/photos/cuisine1.jpg">Cuisine 1</option>
+            <option value="/photos/dome.PNG">Dome</option>
+            <option value="/photos/fresquebiodiversite.PNG">fresquebiodiversite</option>
+            <option value="/photos/marchedulittorale.PNG">marchedulittorale</option>
+            <option value="/photos/moulindenuit.PNG">moulindenuit</option>
+            <option value="/photos/Photostage1.PNG">Photostage1</option>
+            <option value="/photos/schemamoulin.PNG">schemamoulin</option>
+        </select>
+
+
+        <!-- <label>photo :</label>
+        <input type="text" th:field="*{photo}" />
+        <br>-->
+
+
+        <!--<label for="photoFile">Sélectionner une photo:</label>
+        <input type="file" id="photoFile" name="photo" th:field="*{photo}" accept="image/*" />
+        <br>-->
+
+        <input type="hidden" th:field="*{id}" />
+        <input type="hidden" th:field="*{places_restantes}" />
+
+        <input class="bouton-creation" type="submit" value="Enregistrer"/>
+    </form>
+</main>
+</body>
+</html>
