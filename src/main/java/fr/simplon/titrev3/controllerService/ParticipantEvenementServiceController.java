@@ -37,5 +37,10 @@ public class ParticipantEvenementServiceController {
         return repo.findByParticipantId(participantId);
     }
 
+    @GetMapping(path= "/rest/InscritsEvenement/{evenementId}")
+    public List<ParticipantEvenement> getParticipantsByEventId(@PathVariable Long evenementId) {
+        return repo.findByEvenementId(evenementId);
+    }
+
 
 }

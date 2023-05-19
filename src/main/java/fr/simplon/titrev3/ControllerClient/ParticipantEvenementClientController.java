@@ -5,10 +5,8 @@ import fr.simplon.titrev3.Model.Participant;
 import fr.simplon.titrev3.Model.ParticipantEvenement;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -64,18 +62,47 @@ public class ParticipantEvenementClientController {
         return "redirect:/programmation";
     }
 
-    //@GetMapping("/InscriptionsParticipant/{username}")
-    //public String afficherEvenementsParticipant(@PathVariable String username, Model model) {
-        //this.restTemplate = new RestTemplate();
-        //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        //username = authentication.getName();
-        //String url = "http://localhost:8083/rest/participantEvenement/{username}";
-        //ResponseEntity<ParticipantEvenement> response = restTemplate.getForEntity(url, ParticipantEvenement.class, username);
-        //ParticipantEvenement participantEvenement = response.getBody();
-        //model.addAttribute("participantEvenement", participantEvenement);
-        //return "listeEvenementsParticipant";
-    //}
+
+    @GetMapping("/InscriptionsParticipant/{username}")
+    public String afficherEvenementsParticipant(Model model, @PathVariable String username) {
+        this.restTemplate = new RestTemplate();
+        String participantUrl = "http://localhost:8083/rest/participants/{username}";
+        ResponseEntity<Participant> response1 = restTemplate.getForEntity(participantUrl, Participant.class, username);
+        Participant participant = response1.getBody();
+        model.addAttribute("participant", participant);
+        if (participant != null) {
+            String url = "http://localhost:8083/rest/participantEvenement/{participantId}";
+            ResponseEntity<List<ParticipantEvenement>> response2 = restTemplate.exchange(
+                    url,
+                    HttpMethod.GET,
+                    null,
+                    new ParameterizedTypeReference<List<ParticipantEvenement>>() {},
+                    participant.getId()
+            );
+            List<ParticipantEvenement> participantEvenements = response2.getBody();
+            model.addAttribute("participantEvenements", participantEvenements);
+            return "listeEvenementsParticipant";
+        } else {
+            return "/programmation";
+        }
+    }
 
 
+    @GetMapping("InscriptionsEvenement/{evenementId}")
+    public String afficherParticipantsEvenement(Model model, @PathVariable Long evenementId) {
+        this.restTemplate = new RestTemplate();
 
+            String url = "http://localhost:8083/rest/InscritsEvenement/{eventId}";
+            ResponseEntity<List<ParticipantEvenement>> response2 = restTemplate.exchange(
+                    url,
+                    HttpMethod.GET,
+                    null,
+                    new ParameterizedTypeReference<List<ParticipantEvenement>>() {},
+                    evenementId
+            );
+            List<ParticipantEvenement> participantEvenements = response2.getBody();
+            model.addAttribute("participantEvenements", participantEvenements);
+            return "listeInscritsEvenement";
+
+    }
 }

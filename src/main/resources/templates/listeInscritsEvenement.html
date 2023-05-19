@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Liste des inscrits à l'évenement</title>
+</head>
+
+<body>
+<header>Liste des participants à l'évènement</header>
+<main>
+  <div class="table-container">
+    <table class="tableau">
+      <thead>
+      <tr>
+        <th class="en-tete-tableau sortable">Nom</th>
+        <th class="en-tete-tableau">Prénom</th>
+        <th class="en-tete-tableau">Email</th>
+        <th class="en-tete-tableau">Code Postal</th>
+      </tr>
+      </thead>
+      <tbody>
+        <th:block th:each="participantEvenement : ${participantEvenements}">
+          <tr>
+            <td class="cellule" th:text="${participantEvenement.getParticipant().getNom()}"></td>
+            <td class="cellule" th:text="${participantEvenement.getParticipant().getPrenom()}"></td>
+            <td class="cellule" th:text="${participantEvenement.getParticipant().getEmail()}"></td>
+            <td class="cellule" th:number="${participantEvenement.getParticipant().getCode_postal()}"></td>
+          </tr>
+        </th:block>
+      </tbody>
+    </table>
+  </div>
+</main>
+</body>
+</html>

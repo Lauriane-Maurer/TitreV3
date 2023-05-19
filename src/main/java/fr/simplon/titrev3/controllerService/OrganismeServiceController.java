@@ -23,7 +23,7 @@ public class OrganismeServiceController {
         //this.repo.save(new Organisme("L'atelier de Viliv", "artisanat","3 rue de la fontaine", "Coat-Méal", 29870, "www.latelierdeviliv.fr", 48.5186046346549, -4.540717612891484));
         //this.repo.save(new Organisme("Du haut de ma dune", "artisanat","130 Ar lud", "Landéda", 29870, "www.duhautdemadune.com", 48.61263611216837, -4.557234647722291));
         //this.repo.save(new Organisme("Théatre à Molette", "animation","6 rue Mézou Kervidré", "Le Conquet", 29217, "www.theatreamolette.fr", 48.35226286118822, -4.762655971098742));
-        //this.repo.save(new Organisme("Parc Naturel Marin d'Iroise", "environnement","23 rue radio", "Le Conquet", 29217, "www.parc-marin-iroise.fr", 48.35482736547393, -4.779469303808932));
+        //.repo.save(new Organisme("Parc Naturel Marin d'Iroise", "environnement","23 rue radio", "Le Conquet", 29217, "www.parc-marin-iroise.fr", 48.35482736547393, -4.779469303808932));
         //this.repo.save(new Organisme("Bergerie des abers", "agriculture","Gorréquéar", "Plouvien", 29860, "www.bergeriedesabers.fr",48.540765697781275, -4.522247283475145));
         //this.repo.save(new Organisme("Ar Vro Bagan", "animation","ZA du Hellez", "Plouguerneau", 29880, "www.arvrobagan.bzh",48.62956014028035, -4.484334853087361));
         //this.repo.save(new Organisme("Brasserie des abers", "artisanat","2 avenue de Portsall", "Ploudalmézeau", 29830, "www.facebook.com/brasseriedesabers/",48.56085564281277, -4.630583807123573));

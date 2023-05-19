@@ -25,7 +25,7 @@
                 <td class="cellule" th:text="${evenement.titre}"></td>
                 <td class="cellule" th:text="${evenement.dateDebut}"></td>
                 <td class="cellule" th:text="${evenement.dateFin}"></td>
-                <td><button type="button" class="btn btn-primary" ><a th:href="@{/inscrits/{evenement}(evenement=${evenement.getId()})}">Participants</a></button></td>
+                <td><button type="button" class="btn btn-primary" ><a th:href="@{/InscriptionsEvenement/{evenementId}(evenementId=${evenement.getId()})}">Participants</a></button></td>
                 <td><button type="button" class="btn btn-primary" th:onclick="|window.location.href='@{/UpdateEvent/{id}(id=${evenement.id})}'|">Modifier</button></td>
                 <td><button class="delete-button" type="button"  th:onclick="|window.location.href='@{/evenements/delete/{id}(id=${evenement.id})}'|">Supprimer</button></td>
             </tr>

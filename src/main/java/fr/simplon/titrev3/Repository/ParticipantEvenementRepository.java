@@ -10,4 +10,6 @@ public interface ParticipantEvenementRepository extends JpaRepository <Participa
 
     List<ParticipantEvenement> findByParticipantUsername(String username);
     List<ParticipantEvenement> findByParticipantId(Long participantId);
+    List<ParticipantEvenement> findByEvenementId(Long evenementId);
+
 }

@@ -87,8 +87,6 @@ public class EvenementClientController {
     }
 
 
-
-
     @GetMapping("/UpdateEvent/{id}")
     public String displayFormModEvent(Model model, @PathVariable Long id){
         this.restTemplate = new RestTemplate();
