@@ -29,13 +29,13 @@
         </tr>
         </thead>
         <tbody>
-        <th:block th:each="participant : ${participants}">
+        <th:block th:each="participantEvenement : ${participantEvenements}">
             <tr>
-                <td class="cellule" th:text="${participant.evenement.getTitre()}"></td>
-                <td class="cellule" th:text="${participant.evenement.getDescription()}"></td>
-                <td class="cellule" th:text="${participant.evenement.getDateDebut()}"></td>
-                <td class="cellule" th:text="${participant.evenement.getDateFin()}"></td>
-                <td><button class="delete-button" type="button"  th:onclick="|window.location.href='@{/participants/delete/{id}(id=${participant.id})}'|">Annuler</button></td>
+                <td class="cellule" th:text="${participantEvenement.getEvenement().getTitre()}"></td>
+                <td class="cellule" th:text="${participantEvenement.getEvenement().getDescription()}"></td>
+                <td class="cellule" th:text="${participantEvenement.getEvenement().getDateDebut()}"></td>
+                <td class="cellule" th:text="${participantEvenement.getEvenement().getDateFin()}"></td>
+                <!--<td><button class="delete-button" type="button"  th:onclick="|window.location.href='@{/participants/delete/{id}(id=${participant.id})}'|">Annuler</button></td>-->
             </tr>
         </th:block>
         </tbody>

@@ -11,7 +11,7 @@
 </header>
 
 <main>
-    <form th:action="@{/InscriptionParticipant}" th:object="${participantEvenement}"  method="post" >
+    <form th:action="@{/InscriptionParticipant}" th:object="${participantEvenement}" method="post" >
 
         <label>Prénom:</label>
         <input type="text" th:field="${participant.prenom}" required/>

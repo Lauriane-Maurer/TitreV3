@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 @Controller
 public class ParticipantEvenementClientController {
 
@@ -49,19 +51,6 @@ public class ParticipantEvenementClientController {
         }
     }
 
-    //@PostMapping("/InscriptionParticipant")
-    //public String enregistrerInscriptionParticipant(@ModelAttribute("participantEvenement") ParticipantEvenement participantEvenement) {
-        //this.restTemplate = new RestTemplate();
-
-        // Enregistrer l'événement et le participant dans la table "participant_evenement"
-        //participantEvenement.setEvenement(participantEvenement.getEvenement());
-        //participantEvenement.setParticipant(participantEvenement.getParticipant());
-
-        // Appeler l'API ou le service approprié pour enregistrer participantEvenement dans la base de données
-
-        //return "redirect:/confirmationInscription"; // Rediriger vers la page de confirmation
-    //}
-
     @PostMapping("/InscriptionParticipant")
     public String addParticipantEvent(@ModelAttribute("participantEvenement") ParticipantEvenement participantEvenement) {
         this.restTemplate = new RestTemplate();
@@ -74,5 +63,19 @@ public class ParticipantEvenementClientController {
         ResponseEntity<ParticipantEvenement> response = restTemplate.postForEntity(url, request, ParticipantEvenement.class);
         return "redirect:/programmation";
     }
+
+    //@GetMapping("/InscriptionsParticipant/{username}")
+    //public String afficherEvenementsParticipant(@PathVariable String username, Model model) {
+        //this.restTemplate = new RestTemplate();
+        //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        //username = authentication.getName();
+        //String url = "http://localhost:8083/rest/participantEvenement/{username}";
+        //ResponseEntity<ParticipantEvenement> response = restTemplate.getForEntity(url, ParticipantEvenement.class, username);
+        //ParticipantEvenement participantEvenement = response.getBody();
+        //model.addAttribute("participantEvenement", participantEvenement);
+        //return "listeEvenementsParticipant";
+    //}
+
+
 
 }

@@ -1,5 +1,6 @@
 package fr.simplon.titrev3.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity

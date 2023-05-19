@@ -3,10 +3,13 @@ package fr.simplon.titrev3.controllerService;
 import fr.simplon.titrev3.Model.Participant;
 import fr.simplon.titrev3.Repository.ParticipantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @RestController
 public class ParticipantServiceController {
@@ -62,11 +65,5 @@ public class ParticipantServiceController {
     public Participant afficherparticipantparusername(@PathVariable String username) {
         return repo.findByUsername(username);
     }
-
-
-
-
-
-
 
 }

@@ -26,7 +26,7 @@
                     <span sec:authorize="isAuthenticated()">
                         <span sec:authorize="!hasRole('ADMIN')">
                             Bienvenue <span sec:authentication="name"></span> ! |&nbsp;
-                            <a th:href="@{/participants/{username}(username=${#authentication.getName()})}">Mes événements</a> |&nbsp;
+                            <a th:href="@{/InscriptionsParticipant/{username}(username=${#authentication.getName()})}">Mes événements</a> |&nbsp;
                             <a th:href="@{/deconnexion}">Se déconnecter</a>
                         </span>
                         <span sec:authorize="hasRole('ADMIN')">
