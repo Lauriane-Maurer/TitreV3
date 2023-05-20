@@ -46,7 +46,7 @@ public class SpringSecurityConfig  {
     {
         return http.csrf().disable() // Pour l'instant on désactive la protection CSRF
                 .authorizeHttpRequests()
-                .requestMatchers(HttpMethod.GET, "/evenements/**").authenticated()
+                .requestMatchers(HttpMethod.GET, "/InscriptionParticipant/**").authenticated()
                 .requestMatchers("/admin/**").hasRole("ADMIN") //
                 .anyRequest().permitAll()//
                 .and()

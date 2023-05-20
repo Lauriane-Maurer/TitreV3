@@ -4,8 +4,10 @@
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
       <link rel="stylesheet" href="/styleMoulin.css">
       <link rel="stylesheet" href="/styleMoulinNavbar.css">
+      <link rel="stylesheet" href="/styleMoulinFicheEvenement.css">
       <title>Title</title>
   </head>
 
@@ -14,58 +16,71 @@
         <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
     </header>
     <main>
-        <img class="fiche-image" th:src="*{evenement.photo}" alt="${evenement.titre}">
-        <section class="fiche-info">
-            <div class="fiche-chiffres">
-                <p>Nombre de places proposées:<span  th:text="*{evenement.places_totales}"></span></p>
-                <p>Nombre de places restantes:<span  th:text="*{evenement.places_restantes}"></span></p>
-                <p>Intervenant.e.s:<span  th:text="*{evenement.intervenant}"></span></p>
-                <p>Tarif:<span  th:number="*{evenement.tarif}"></span></p>
-            </div>
+        <section class="fiche-bandeau">
+            <img class="fiche-image" th:src="*{evenement.photo}" alt="${evenement.titre}">
             <div class="fiche-texte">
-                <div>
-                    <p>
-                        <span th:if="${#temporals.format(evenement.dateDebut, 'yyyyMMdd')} == ${#temporals.format(evenement.dateFin, 'yyyyMMdd')}">
-                            <span>Le </span>
-                            <span th:text="${#temporals.dayOfWeekName(evenement.dateDebut)}"></span>
-                            <span th:text="${#temporals.day(evenement.dateDebut)}"></span>
-                            <span th:text="${#temporals.monthName(evenement.dateDebut)}"></span>
-                            <span>de </span>
-                            <span th:text="${#temporals.hour(evenement.dateDebut)}"></span>
-                            <span>h </span>
-                            <span th:text="${#temporals.format(evenement.dateDebut, 'mm')}"></span>
-                            <span>à </span>
-                            <span th:text="${#temporals.hour(evenement.dateFin)}"></span>
-                            <span>h </span>
-                            <span th:text="${#temporals.format(evenement.dateFin, 'mm')}"></span>
-                        </span>
-                        <span th:unless="${#temporals.format(evenement.dateDebut, 'yyyyMMdd')} == ${#temporals.format(evenement.dateFin, 'yyyyMMdd')}">
-                            <span>Du </span>
-                            <span th:text="${#temporals.dayOfWeekName(evenement.dateDebut)}"></span>
-                            <span th:text="${#temporals.day(evenement.dateDebut)}"></span>
-                            <span th:text="${#temporals.monthName(evenement.dateDebut)}"></span> à
-                            <span th:text="${#temporals.hour(evenement.dateDebut)}"></span>
-                            <span>h </span>
-                            <span th:text="${#temporals.format(evenement.dateDebut, 'mm')}"></span>
-                            <span>au </span>
-                            <span th:text="${#temporals.dayOfWeekName(evenement.dateFin)}"></span>
-                            <span th:text="${#temporals.day(evenement.dateFin)}"></span>
-                            <span th:text="${#temporals.monthName(evenement.dateFin)}"></span> à
-                            <span th:text="${#temporals.hour(evenement.dateFin)}"></span>
-                            <span>h </span>
-                            <span th:text="${#temporals.format(evenement.dateFin, 'mm')}"></span>
-
-                        </span>
-                    </p>
-                    <h5 th:datetime="*{evenement.dateFin}"></h5>
-                    <h1 th:text="*{evenement.titre}"></h1>
+                <p class="fiche-date">
+                    <span th:if="${#temporals.format(evenement.dateDebut, 'yyyyMMdd')} == ${#temporals.format(evenement.dateFin, 'yyyyMMdd')}">
+                        <span>Le </span>
+                        <span th:text="${#temporals.dayOfWeekName(evenement.dateDebut)}"></span>
+                        <span th:text="${#temporals.day(evenement.dateDebut)}"></span>
+                        <span th:text="${#temporals.monthName(evenement.dateDebut)}"></span>
+                        <span>de </span>
+                        <span th:text="${#temporals.hour(evenement.dateDebut)}"></span>
+                        <span>h</span>
+                        <span th:text="${#temporals.format(evenement.dateDebut, 'mm')}"></span>
+                        <span>à </span>
+                        <span th:text="${#temporals.hour(evenement.dateFin)}"></span>
+                        <span>h</span>
+                        <span th:text="${#temporals.format(evenement.dateFin, 'mm')}"></span>
+                    </span>
+                    <span th:unless="${#temporals.format(evenement.dateDebut, 'yyyyMMdd')} == ${#temporals.format(evenement.dateFin, 'yyyyMMdd')}">
+                        <span>Du </span>
+                        <span th:text="${#temporals.dayOfWeekName(evenement.dateDebut)}"></span>
+                        <span th:text="${#temporals.day(evenement.dateDebut)}"></span>
+                        <span th:text="${#temporals.monthName(evenement.dateDebut)}"></span> à
+                        <span th:text="${#temporals.hour(evenement.dateDebut)}"></span>
+                        <span>h</span>
+                        <span th:text="${#temporals.format(evenement.dateDebut, 'mm')}"></span>
+                        <span>au </span>
+                        <span th:text="${#temporals.dayOfWeekName(evenement.dateFin)}"></span>
+                        <span th:text="${#temporals.day(evenement.dateFin)}"></span>
+                        <span th:text="${#temporals.monthName(evenement.dateFin)}"></span> à
+                        <span th:text="${#temporals.hour(evenement.dateFin)}"></span>
+                        <span>h</span>
+                        <span th:text="${#temporals.format(evenement.dateFin, 'mm')}"></span>
+                    </span>
+                </p>
+                <h1 th:text="*{evenement.titre}"></h1>
+                <p class="fiche-description" th:text="*{evenement.description}"></p>
+                <p class="fiche-intervenant"> Intervenant.e.s : <span th:text="*{evenement.intervenant}"></span></p>
+                <button class="fiche-bouton"><a th:href="@{/InscriptionParticipant/{eventId}/{username}(eventId=${evenement.id}, username=${#authentication.getName()})}">S'inscrire</a></button>
+            </div>
+        </section>
+        <section class="fiche-bandeau">
+            <div class="fiche-chiffres">
+                <p>Nombre de places ouvertes: <span  th:text="*{evenement.places_totales}"></span></p>
+                <p>Nombre de places restantes: <span  th:text="*{evenement.places_restantes}"></span></p>
+                <br>
+                <p>Tarif / personne: <span  th:text="*{evenement.tarif}"></span> €</p>
+            </div>
+            <div class="fiche-contact">
+                <div class="fiche-contact-info">
+                    <h5>Pour se rendre au moulin:</h5>
+                    <p>Moulin de Kergounan</p>
+                    <p>29830 Lampaul-Ploudalmézeau</p>
+                    <br>
+                    <h5>Contact:</h5>
+                    <p>contacter Nathalie au 07 06 05 04 03</p>
+                    <p>Email: poulet.te@ecolieumoulinduroz.org</p>
+                    <p>29830 Lampaul-Ploudalmézeau</p>
                 </div>
-                <div>
-                    <button><a th:href="@{/InscriptionParticipant/{eventId}/{username}(eventId=${evenement.id}, username=${#authentication.getName()})}">S'inscrire</a></button>
-                </div>
+                <div id="mapLocalisationMoulin"></div>
             </div>
         </section>
     </main>
-
   </body>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/Javascript/localisationMoulin.js"></script>
 </html>

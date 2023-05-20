@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="card">
                         <img src="${evenement.photo}" alt="${evenement.titre}">
                         <div class="card-content">
+                            <p class="card-text">${evenement.dateDebut} - ${evenement.dateFin}</p>
+                            <h5 class="card-type">${evenement.type}</h5>
                             <h3 class="card-title">${evenement.titre}</h3>
-                            <p class="card-text">${evenement.description}</p>
-                            <p class="card-text"><small class="text-muted">${evenement.dateDebut} - ${evenement.dateFin}</small></p>
                         </div>
                         <div class="card-footer">
                             <a href="/evenements/${evenement.id}">En savoir plus</a>

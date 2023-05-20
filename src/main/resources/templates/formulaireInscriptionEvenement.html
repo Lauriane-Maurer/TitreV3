@@ -2,35 +2,69 @@
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styleMoulin.css">
+    <link rel="stylesheet" href="/styleMoulinNavbar.css">
+    <link rel="stylesheet" href="/styleMoulinFormulaireParticipant.css">
     <title>Participation</title>
 </head>
 
 <body>
-<header>
-    <h1>Inscription à l'évènement : </h1>
+<header class="header-formulaireParticipant">
+    <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+    <h1>Inscription </h1>
 </header>
 
 <main>
     <form th:action="@{/InscriptionParticipant}" th:object="${participantEvenement}" method="post" >
-
-        <label>Prénom:</label>
-        <input type="text" th:field="${participant.prenom}" required/>
-
-        <label>Nom:</label>
-        <input type="text" th:field="${participant.nom}" required/>
-
-        <label>Téléphone:</label>
-        <input type="text" th:field="${participant.telephone}" required/>
-
-        <label>Email:</label>
-        <input type="email" th:field="${participant.email}" required/>
-
-        <label>Code Postal:</label>
-        <input type="number" th:field="${participant.code_postal}" required/>
-        <input type="hidden" th:field="${participant.username}" th:value="${#authentication.getName()}"/>
-        <input type="number" th:value="${participant.id}" th:field="*{participant.id}" />
-        <input type="number" th:value="${evenement.id}" th:field="*{evenement.id}" />
-        <input class="bouton-creation" type="submit" value="Enregistrer"/>
+        <div class="formulaireParticipant-introduction">
+            <p>Je souhaite m'inscrire à l'évènement <span th:text="${evenement.titre}"></span></p>
+            <p>qui a lieu
+                <span th:if="${#temporals.format(evenement.dateDebut, 'yyyyMMdd')} == ${#temporals.format(evenement.dateFin, 'yyyyMMdd')}">
+                    <span>Le </span>
+                    <span th:text="${#temporals.dayOfWeekName(evenement.dateDebut)}"></span>
+                    <span th:text="${#temporals.day(evenement.dateDebut)}"></span>
+                    <span th:text="${#temporals.monthName(evenement.dateDebut)}"></span>
+                    <span>de </span>
+                    <span th:text="${#temporals.hour(evenement.dateDebut)}"></span>
+                    <span>h</span>
+                    <span th:text="${#temporals.format(evenement.dateDebut, 'mm')}"></span>
+                    <span>à </span>
+                    <span th:text="${#temporals.hour(evenement.dateFin)}"></span>
+                    <span>h</span>
+                    <span th:text="${#temporals.format(evenement.dateFin, 'mm')}"></span>
+                </span>
+                <span th:unless="${#temporals.format(evenement.dateDebut, 'yyyyMMdd')} == ${#temporals.format(evenement.dateFin, 'yyyyMMdd')}">
+                    <span>Du </span>
+                    <span th:text="${#temporals.dayOfWeekName(evenement.dateDebut)}"></span>
+                    <span th:text="${#temporals.day(evenement.dateDebut)}"></span>
+                    <span th:text="${#temporals.monthName(evenement.dateDebut)}"></span> à
+                    <span th:text="${#temporals.hour(evenement.dateDebut)}"></span>
+                    <span>h</span>
+                    <span th:text="${#temporals.format(evenement.dateDebut, 'mm')}"></span>
+                    <span>au </span>
+                    <span th:text="${#temporals.dayOfWeekName(evenement.dateFin)}"></span>
+                    <span th:text="${#temporals.day(evenement.dateFin)}"></span>
+                    <span th:text="${#temporals.monthName(evenement.dateFin)}"></span> à
+                    <span th:text="${#temporals.hour(evenement.dateFin)}"></span>
+                    <span>h</span>
+                    <span th:text="${#temporals.format(evenement.dateFin, 'mm')}"></span>
+                </span>
+            </p>
+        </div>
+        <div class="formulaireParticipant-informations">
+            <p>Informations personnelles :</p>
+            <input type="text" th:field="${participant.prenom}" readonly/>
+            <input type="text" th:field="${participant.nom}" readonly/>
+            <input type="text" th:field="${participant.telephone}" readonly/>
+            <input type="email" th:field="${participant.email}" readonly/>
+            <input type="number" th:field="${participant.code_postal}" readonly/>
+            <input type="hidden" th:field="${participant.username}" th:value="${#authentication.getName()}" readonly/>
+            <input type="hidden" th:value="${participant.id}" th:field="*{participant.id}" readonly/>
+            <input type="hidden" th:value="${evenement.id}" th:field="*{evenement.id}" readonly/>
+            <br>
+            <button class="bouton-confirmation" type="submit">Je confirme mon inscription</button>
+        </div>
     </form>
 </main>
 </body>
