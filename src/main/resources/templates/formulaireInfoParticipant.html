@@ -1,37 +1,39 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Informations Participant</title>
-</head>
 
-<body>
-<header>
-    <h1>Informations : </h1>
-</header>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/styleMoulin.css">
+        <link rel="stylesheet" href="/styleMoulinNavbar.css">
+        <link rel="stylesheet" href="/styleMoulinFormulaireCreation.css">
+        <title>Informations Participant</title>
+    </head>
 
-<main>
-    <form th:action="@{/InfoParticipant}" th:object="${participant}" method="post" >
+    <body>
 
-        <label>Prénom:</label>
-        <input type="text" th:field="*{prenom}" required/>
+        <header class="formulaireCreation-header">
+            <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+            <h1>Informations : </h1>
+        </header>
 
-        <label>Nom:</label>
-        <input type="text" th:field="*{nom}" required/>
+        <main>
+            <form th:action="@{/InfoParticipant}" th:object="${participant}" method="post" >
+                <p class="formulaireCreation-introduction">Merci de compléter les informations suivantes:</p>
+                <div class="form-section">
+                    <input class="form-item" type="text" th:field="*{prenom}" placeholder="Prénom" required/>
+                    <input class="form-item" type="text" th:field="*{nom}" placeholder="Nom" required/>
+                    <input class="form-item" type="text" th:field="*{telephone}" placeholder="Téléphone" required/>
+                    <input class="form-item" type="email" th:field="*{email}" placeholder="Email" required/>
+                    <input class="form-item" type="number" th:field="*{code_postal}" placeholder="Code postal" required/>
+                    <input class="form-item" type="hidden" th:field="*{username}" th:value="${#authentication.getName()}"/>
+                    <input class="form-item" type="hidden" th:field="*{id}" />
+                    <input class="form-item" type="hidden" th:field="*{participantEvenements}" />
+                </div>
+                <input class="bouton-creation" type="submit" value="Enregistrer"/>
+            </form>
+        </main>
 
-        <label>Téléphone:</label>
-        <input type="text" th:field="*{telephone}" required/>
+    </body>
 
-        <label>Email:</label>
-        <input type="email" th:field="*{email}" required/>
-
-        <label>Code Postal:</label>
-        <input type="number" th:field="*{code_postal}" required/>
-        <input type="hidden" th:field="*{username}" th:value="${#authentication.getName()}"/>
-        <input type="number" th:field="*{id}" />
-        <input type="hidden" th:field="*{participantEvenements}" />
-        <input class="bouton-creation" type="submit" value="Enregistrer"/>
-    </form>
-</main>
-</body>
 </html>

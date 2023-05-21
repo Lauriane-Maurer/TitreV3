@@ -103,6 +103,13 @@ public class ParticipantEvenementClientController {
             List<ParticipantEvenement> participantEvenements = response2.getBody();
             model.addAttribute("participantEvenements", participantEvenements);
             return "listeInscritsEvenement";
+    }
 
+    @GetMapping ("participantEvenement/delete/{id}")
+    public String delParticipantEvent(Model model, @PathVariable Long id){
+        this.restTemplate = new RestTemplate();
+        String url="http://localhost:8083/rest/participantEvenement/{id}";
+        restTemplate.delete(url, id);
+        return "redirect:/";
     }
 }

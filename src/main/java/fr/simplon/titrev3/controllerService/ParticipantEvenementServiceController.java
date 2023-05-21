@@ -42,5 +42,9 @@ public class ParticipantEvenementServiceController {
         return repo.findByEvenementId(evenementId);
     }
 
+    @DeleteMapping("/rest/participantEvenement/{id}")
+    public void deleteParticipantEvent(@PathVariable Long id) {
+        repo.deleteById(id);
+    }
 
 }

@@ -4,40 +4,62 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/styleMoulin.css">
-        <link rel="stylesheet" href="/styleMoulinFormulaireEvenement.css">
+        <link rel="stylesheet" href="/styleMoulinFormulaireCreation.css">
         <link rel="stylesheet" href="/styleMoulinNavbar.css">
         <title>Formulaire_evenement</title>
     </head>
 
     <body>
 
-        <header class="formulaireEvenement-header">
+        <header class="formulaireCreation-header">
             <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
             <h1>Formulaire Evenement</h1>
         </header>
 
         <main>
-            <form class="formulaireEvenement-informations" th:object="${evenement}" method="post" >
-                <input class="form-item" type="text" th:field="*{type}" placeholder="Type" required/>
-                <input class="form-item" type="text" th:field="*{titre}" placeholder="Titre" required/>
-                <input class="form-item" type="text" th:field="*{description}" placeholder="Descritpion" required/>
-                <input class="form-item" type="datetime-local" th:field="*{dateDebut}" placeholder="Date/heure de début" required/>
-                <input class="form-item" type="datetime-local" th:field="*{dateFin}" placeholder="Date/heure de fin" required/>
-                <input class="form-item" type="number" th:field="*{places_totales}" placeholder="Nb_places ouvertes" />
-                <input class="form-item" type="number" th:field="*{tarif}" placeholder="Nb_places restantes"  />
-                <input class="form-item" type="text" th:field="*{intervenant}" placeholder="Intervenant.e.s"/>
-                <select class="form-item" id="photo" name="photo" th:field="*{photo}">
-                    <option value="/photos/beachyoga.PNG">Beach Yoga</option>
-                    <option value="/photos/cuisine1.jpg">Cuisine 1</option>
-                    <option value="/photos/dome.PNG">Dome</option>
-                    <option value="/photos/fresquebiodiversite.PNG">fresquebiodiversite</option>
-                    <option value="/photos/marchedulittorale.PNG">marchedulittorale</option>
-                    <option value="/photos/moulindenuit.PNG">moulindenuit</option>
-                    <option value="/photos/Photostage1.PNG">Photostage1</option>
-                    <option value="/photos/schemamoulin.PNG">schemamoulin</option>
-                </select>
-                <input type="hidden" th:field="*{id}" />
-                <input type="hidden" th:field="*{places_restantes}" />
+            <form class="formulaireCreation-form" th:object="${evenement}" method="post" >
+                <p class="formulaireCreation-introduction">Pour créer un nouvel évènement, merci de compléter le formulaire ci-dessous.</p>
+                <div class="formulaireCreation-informations">
+                    <div class="form-section">
+                        <p>Présentation de l'évènement</p>
+                        <select class="form-item-select" type="text" th:field="*{type}" placeholder="Type" required/>
+                            <option value="Atelier">Atelier</option>
+                            <option value="Conférence">Conférence</option>
+                            <option value="Animation culturelle">Animation culturelle</option>
+                            <option value="Marché">Marché</option>
+                            <option value="Stage">Stage</option>
+                            <option value="Rencontre">Rencontre</option>
+                        </select>
+                        <input class="form-item" type="text" th:field="*{titre}" placeholder="Titre" required/>
+                        <input class="form-item" type="text" th:field="*{description}" placeholder="Descritpion" required/>
+                    </div>
+                    <div class="form-section">
+                        <p>Date & heure de l'évènement</p>
+                        <input class="form-item" type="datetime-local" th:field="*{dateDebut}" placeholder="Date/heure de début" required/>
+                        <input class="form-item" type="datetime-local" th:field="*{dateFin}" placeholder="Date/heure de fin" required/>
+                    </div>
+                    <div class="form-section">
+                        <p>Autres informations</p>
+                        <input class="form-item" type="number" th:field="*{places_totales}" placeholder="Nb_places ouvertes" />
+                        <input class="form-item" type="number" th:field="*{tarif}" placeholder="Tarif"  />
+                        <input class="form-item" type="text" th:field="*{intervenant}" placeholder="Intervenant.e.s"/>
+                    </div>
+                    <div class="form-section">
+                        <p>Photo</p>
+                        <select class="form-item-select" id="photo" name="photo" th:field="*{photo}">
+                            <option value="/photos/beachyoga.PNG">Beach Yoga</option>
+                            <option value="/photos/cuisine1.jpg">Cuisine 1</option>
+                            <option value="/photos/dome.PNG">Dome</option>
+                            <option value="/photos/fresquebiodiversite.PNG">fresquebiodiversite</option>
+                            <option value="/photos/marchedulittorale.PNG">marchedulittorale</option>
+                            <option value="/photos/moulindenuit.PNG">moulindenuit</option>
+                            <option value="/photos/Photostage1.PNG">Photostage1</option>
+                            <option value="/photos/schemamoulin.PNG">schemamoulin</option>
+                        </select>
+                    </div>
+                    <input type="hidden" th:field="*{id}" />
+                    <input type="hidden" th:field="*{places_restantes}" />
+                </div>
                 <input class="bouton-creation" type="submit" value="Enregistrer"/>
             </form>
         </main>

@@ -1,0 +1,73 @@
+.formulaireCreation-header {
+    background-color: #ffba07;
+    height: 140px;
+}
+
+.formulaireCreation-header h1 {
+    margin-top:104px;
+    margin-left: 80px;
+    font-family: Arial, sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulaireCreation-introduction {
+    margin-top: 80px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.formulaireCreation-informations{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.form-section{
+    display: flex;
+    flex-direction: column;
+    border: solid #cccccc 1px;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,.3);
+}
+
+.form-section p{
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+
+}
+
+.form-item{
+    width: 200px;
+    margin-top: 10px;
+    padding: 10px;
+    border: solid #cccccc 1px;
+    color: black;
+}
+
+.form-item-select{
+    width: 224px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.bouton-creation{
+    width: 200px;
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    background-color: #ffba07;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 0 5px rgba(0,0,0,.3);
+}

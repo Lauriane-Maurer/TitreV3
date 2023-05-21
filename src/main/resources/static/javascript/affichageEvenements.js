@@ -15,12 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="card">
                         <img src="${evenement.photo}" alt="${evenement.titre}">
                         <div class="card-content">
-                            <p class="card-text">${evenement.dateDebut} - ${evenement.dateFin}</p>
+                            <p class="card-date">${evenement.dateDebut} - ${evenement.dateFin}</p>
                             <h5 class="card-type">${evenement.type}</h5>
-                            <h3 class="card-title">${evenement.titre}</h3>
-                        </div>
-                        <div class="card-footer">
-                            <a href="/evenements/${evenement.id}">En savoir plus</a>
+                            <h3 class="card-title">${evenement.titre}</h3>                                   
+                            <button class="card-button" onclick="window.location.href='/evenements/${evenement.id}'">En savoir plus</button>
                         </div>
                     </div>
                 `;

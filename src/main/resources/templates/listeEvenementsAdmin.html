@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/styleMoulin.css">
+        <link rel="stylesheet" href="/styleMoulinNavbar.css">
+        <link rel="stylesheet" href="/styleMoulinListeEvenements.css">
+        <title>Title</title>
+    </head>
 
-<body>
-<header>Gestion des évènements</header>
-<main>
-    <div class="table-container">
-        <table class="tableau">
+    <body>
+        <header class="ListeEvenements-header">
+            <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+            <h1>Gestion des évènements</h1>
+        </header>
+
+    <main class="ListeEvenements-main">
+    <div>
+        <table class="ListeEvenements-table">
             <thead>
             <tr>
-                <th class="en-tete-tableau sortable">Titre</th>
-                <th class="en-tete-tableau">Date de début</th>
-                <th class="en-tete-tableau">Date de fin</th>
-                <th class="en-tete-tableau"></th>
-                <th class="en-tete-tableau"></th>
-                <th class="en-tete-tableau"></th>
+                <th class="colonne-titre">Titre</th>
+                <th class="colonne-date">Date de début</th>
+                <th class="colonne-date">Date de fin</th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -25,9 +33,9 @@
                 <td class="cellule" th:text="${evenement.titre}"></td>
                 <td class="cellule" th:text="${evenement.dateDebut}"></td>
                 <td class="cellule" th:text="${evenement.dateFin}"></td>
-                <td><button type="button" class="btn btn-primary" ><a th:href="@{/InscriptionsEvenement/{evenementId}(evenementId=${evenement.getId()})}">Participants</a></button></td>
-                <td><button type="button" class="btn btn-primary" th:onclick="|window.location.href='@{/UpdateEvent/{id}(id=${evenement.id})}'|">Modifier</button></td>
-                <td><button class="delete-button" type="button"  th:onclick="|window.location.href='@{/evenements/delete/{id}(id=${evenement.id})}'|">Supprimer</button></td>
+                <td><button type="button" class="bouton-action" th:onclick="|window.location.href= '@{/InscriptionsEvenement/{evenementId}(evenementId=${evenement.getId()})}'|">Participants</button></td>
+                <td><button type="button" class="bouton-action" th:onclick="|window.location.href='@{/UpdateEvent/{id}(id=${evenement.id})}'|">Modifier</button></td>
+                <td><button type="button" class="bouton-action" th:onclick="|window.location.href='@{/evenements/delete/{id}(id=${evenement.id})}'|">Supprimer</button></td>
             </tr>
             </tbody>
         </table>
