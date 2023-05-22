@@ -1,35 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Liste des inscrits à l'évenement</title>
-</head>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 
-<body>
-<header>Liste des participants à l'évènement</header>
-<main>
-  <div class="table-container">
-    <table class="tableau">
-      <thead>
-      <tr>
-        <th class="en-tete-tableau sortable">Nom</th>
-        <th class="en-tete-tableau">Prénom</th>
-        <th class="en-tete-tableau">Email</th>
-        <th class="en-tete-tableau">Code Postal</th>
-      </tr>
-      </thead>
-      <tbody>
-        <th:block th:each="participantEvenement : ${participantEvenements}">
-          <tr>
-            <td class="cellule" th:text="${participantEvenement.getParticipant().getNom()}"></td>
-            <td class="cellule" th:text="${participantEvenement.getParticipant().getPrenom()}"></td>
-            <td class="cellule" th:text="${participantEvenement.getParticipant().getEmail()}"></td>
-            <td class="cellule" th:number="${participantEvenement.getParticipant().getCode_postal()}"></td>
-          </tr>
-        </th:block>
-      </tbody>
-    </table>
-  </div>
-</main>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styleMoulin.css">
+    <link rel="stylesheet" href="/styleMoulinNavbar.css">
+    <link rel="stylesheet" href="/styleMoulinListe.css">
+    <title>Liste des inscrits à l'évenement</title>
+  </head>
+
+  <body>
+
+    <header class="Liste-header">
+      <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+      <h1>Liste des participants à l'évènement</h1>
+    </header>
+
+    <main class="Liste-main">
+        <table class="Liste-table">
+
+          <thead>
+            <tr>
+              <th class="colonne">Nom</th>
+              <th class="colonne">Prénom</th>
+              <th class="colonne">Email</th>
+              <th class="colonne">Code Postal</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <th:block th:each="participantEvenement : ${participantEvenements}">
+              <tr>
+                <td class="cellule" th:text="${participantEvenement.getParticipant().getNom()}"></td>
+                <td class="cellule" th:text="${participantEvenement.getParticipant().getPrenom()}"></td>
+                <td class="cellule" th:text="${participantEvenement.getParticipant().getEmail()}"></td>
+                <td class="cellule" th:text="${participantEvenement.getParticipant().getCode_postal()}"></td>
+              </tr>
+            </th:block>
+          </tbody>
+
+        </table>
+    </main>
+
+  </body>
+
 </html>

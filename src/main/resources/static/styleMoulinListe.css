@@ -1,9 +1,9 @@
-.ListeEvenements-header {
+.Liste-header {
     background-color: #ffba07;
     height: 140px;
 }
 
-.ListeEvenements-header h1 {
+.Liste-header h1 {
     margin-top:104px;
     margin-left: 80px;
     font-family: Arial, sans-serif;
@@ -11,25 +11,25 @@
     font-weight: bold;
 }
 
-.ListeEvenements-main{
+.Liste-main{
     display: flex;
     flex-direction: column;
     margin: 50px 50px;
     font-family: Arial, sans-serif;
 }
 
-.ListeEvenements-main p{
+.Liste-main p{
     margin-left: 100px;
     font-size: 12px;
     font-weight: bold;
 }
 
-.ListeEvenements-table{
+.Liste-table{
     margin: 20px 100px 50px 100px;
     border: none;
 }
 
-.ListeEvenements-table thead{
+.Liste-table thead{
     height: 70px;
     background-color: #eeeeed;
     font-size: 12px;

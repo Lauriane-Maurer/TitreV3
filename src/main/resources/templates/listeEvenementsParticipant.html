@@ -1,48 +1,53 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/styleMoulin.css">
-    <link rel="stylesheet" href="/styleMoulinNavbar.css">
-    <link rel="stylesheet" href="/styleMoulinListeEvenements.css">
-    <title>ListeEvenementsParticipant</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/styleMoulin.css">
+        <link rel="stylesheet" href="/styleMoulinNavbar.css">
+        <link rel="stylesheet" href="/styleMoulinListe.css">
+        <title>ListeEvenementsParticipant</title>
+    </head>
 
-<body>
-<header class="ListeEvenements-header">
-    <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
-    <h1>Mes évènements</h1>
-</header>
+    <body>
 
-<main class="ListeEvenements-main">
-    <p>Liste des événements auxquels vous êtes inscrit :</p>
-    <table class="ListeEvenements-table">
-        <thead>
-        <tr>
-            <th class="colonne">Titre</th>
-            <th class="colonne-description">Description</th>
-            <th class="colonne">Date et heure de debut</th>
-            <th class="colonne">Date et heure de fin</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <th:block th:each="participantEvenement : ${participantEvenements}">
-            <tr>
-                <td class="cellule" th:text="${participantEvenement.getEvenement().getTitre()}"></td>
-                <td class="cellule" th:text="${participantEvenement.getEvenement().getDescription()}"></td>
-                <td class="cellule" th:text="${participantEvenement.getEvenement().getDateDebut()}"></td>
-                <td class="cellule" th:text="${participantEvenement.getEvenement().getDateFin()}"></td>
-                <td>
-                    <button class="bouton-action" type="button" id="delete-button" th:onclick="|confirmDeletion(${participantEvenement.id})|">Annuler</button>
-                </td>
-            </tr>
-        </th:block>
-        </tbody>
-    </table>
-</main>
-</body>
-<script src="/Javascript/confirmationAnnulationInscription.js"></script>
+        <header class="Liste-header">
+            <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+            <h1>Mes évènements</h1>
+        </header>
+
+        <main class="Liste-main">
+            <p>Liste des événements auxquels vous êtes inscrit :</p>
+
+            <table class="Liste-table">
+                <thead>
+                    <tr>
+                        <th class="colonne">Titre</th>
+                        <th class="colonne-description">Description</th>
+                        <th class="colonne">Date et heure de debut</th>
+                        <th class="colonne">Date et heure de fin</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <th:block th:each="participantEvenement : ${participantEvenements}">
+                        <tr>
+                            <td class="cellule" th:text="${participantEvenement.getEvenement().getTitre()}"></td>
+                            <td class="cellule" th:text="${participantEvenement.getEvenement().getDescription()}"></td>
+                            <td class="cellule" th:text="${participantEvenement.getEvenement().getDateDebut()}"></td>
+                            <td class="cellule" th:text="${participantEvenement.getEvenement().getDateFin()}"></td>
+                            <td>
+                                <button class="bouton-action" type="button" id="delete-button" th:onclick="|confirmDeletion(${participantEvenement.id})|">Annuler</button>
+                            </td>
+                        </tr>
+                    </th:block>
+                </tbody>
+            </table>
+
+        </main>
+    </body>
+
+    <script src="/Javascript/confirmationAnnulationInscription.js"></script>
+
 </html>
