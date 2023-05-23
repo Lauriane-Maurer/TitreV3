@@ -153,4 +153,18 @@ import java.util.Set;
     public void setParticipantEvenements(List<ParticipantEvenement> participantEvenements) {
         this.participantEvenements = participantEvenements;
     }
+
+    @PrePersist
+    private void initPlacesRestantes() {
+        if (places_totales != null) {
+            places_restantes = places_totales;
+        }
+    }
+
+    public void decrementerPlacesRestantes() {
+        if (this.places_restantes != null) {
+            this.places_restantes--;
+        }
+    }
+
 }

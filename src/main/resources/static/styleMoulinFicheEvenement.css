@@ -4,6 +4,7 @@
 
 .fiche-image{
     width: 40%;
+    height: 480px;
     margin-top: 70px;
     margin-left: 0;
     margin-bottom: 0;
@@ -13,6 +14,7 @@
 
 .fiche-texte{
     width:60%;
+    height: auto;
     margin-top: 70px;
     margin-right:0;
     border: none;
@@ -55,7 +57,7 @@
     padding: 10px;
     margin-top: 30px;
     margin-left: 70px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     background-color: #0694fb;
     box-shadow: 0 0 5px rgba(0,0,0,.3);
     color: white;

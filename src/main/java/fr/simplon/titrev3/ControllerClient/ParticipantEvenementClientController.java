@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import java.util.List;
-import java.util.Set;
 
 @Controller
 public class ParticipantEvenementClientController {
@@ -67,6 +64,13 @@ public class ParticipantEvenementClientController {
             headers.setContentType(MediaType.APPLICATION_JSON);
             HttpEntity<ParticipantEvenement> request = new HttpEntity<>(participantEvenement, headers);
             ResponseEntity<ParticipantEvenement> response = restTemplate.postForEntity(url, request, ParticipantEvenement.class);
+
+            String decrementationPlacesRestantesUrl = "http://localhost:8083/rest/DecremeneterPlaces/{id}";
+            HttpHeaders headers2 = new HttpHeaders();
+            headers2.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<Evenement> request2 = new HttpEntity<>(evenement, headers);
+            ResponseEntity<Evenement> response2 = restTemplate.exchange(decrementationPlacesRestantesUrl, HttpMethod.POST, request, Evenement.class, evenementId);
+
             return "redirect:/programmation";
         }
     }

@@ -65,6 +65,20 @@ public class EvenementServiceController {
                     evenement.setTarif(newEvent.getTarif());
                     evenement.setIntervenant(newEvent.getIntervenant());
                     evenement.setPhoto(newEvent.getPhoto());
+                    evenement.setParticipantEvenements(newEvent.getParticipantEvenements());
+                    return repo.save(evenement);
+                })
+                .orElseGet(() -> {
+                    newEvent.setId(id);
+                    return repo.save(newEvent);
+                });
+    }
+
+    @PostMapping("/rest/DecremeneterPlaces/{id}")
+    public Evenement decremeneterEvent(@RequestBody Evenement newEvent, @PathVariable Long id) {
+        return repo.findById(id)
+                .map(evenement -> {
+                    evenement.decrementerPlacesRestantes();
                     return repo.save(evenement);
                 })
                 .orElseGet(() -> {
