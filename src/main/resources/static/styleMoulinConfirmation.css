@@ -1,0 +1,10 @@
+h1{
+    margin: 200px auto;
+    width: 50%;
+    align-items: center;
+    padding: 70px;
+    border: solid #eeeeed 1px;
+    text-align: center;
+    box-shadow: 0 0 5px rgba(0,0,0,.3);
+    font-size: 20px;
+}

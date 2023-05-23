@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/styleMoulin.css">
+        <link rel="stylesheet" href="/styleMoulinNavbar.css">
+        <link rel="stylesheet" href="/styleMoulinLogin.css">
+        <title>Modification Mdp</title>
+    </head>
+
+    <body>
+        <header>
+            <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+        </header>
+
+        <main class="login-container">
+            <form th:object="${user}" th:action="@{/change-password}" method="post">
+                <h1 class="login-titre">Modifier son Mot de Passe</h1>
+                <!--<p>
+                    <button th:if="${param.success}" id="btn-change-password-success" class="btn btn-success" type="button"
+                            onclick="window.location='/'">
+                        Retour
+                    </button>
+                </p>
+                    <th:block th:unless="${param.success}">-->
+
+                    <div class="login-form">
+                        <input class="login-item" type="password" id="oldPassword" name="oldPassword" placeholder="Old Password" required="">
+                        <div class="alert alert-warning" role="alert" th:errors="*{oldPassword}"></div>
+
+                        <input class="login-item" type="password" id="newPassword" name="newPassword"
+                               th:field="*{newPassword}" th:value="*{newPassword}"
+                               placeholder="New Password"
+                               required="">
+                        <div class="alert alert-warning" role="alert" th:errors="*{newPassword}"></div>
+
+                        <input class="login-item" type="password" id="confirmPassword" name="confirmPassword"
+                               placeholder="Confirm" required="">
+                        <div class="alert alert-warning" role="alert" th:errors="*{confirmPassword}"></div>
+
+                        <button class="login-button" type="submit">Modifier</button>
+
+                    </div>
+                </th:block>
+
+            </form>
+
+        </main>
+    </body>
+</html>
