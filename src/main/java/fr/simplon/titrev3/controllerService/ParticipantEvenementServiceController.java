@@ -47,4 +47,10 @@ public class ParticipantEvenementServiceController {
         repo.deleteById(id);
     }
 
+
+    @GetMapping("/rest/participantEvenement/checkRegistration")
+    public boolean checkParticipantRegistration(@RequestParam Long participantId, @RequestParam Long evenementId) {
+        return repo.existsByParticipantIdAndEvenementId(participantId, evenementId);
+    }
+
 }

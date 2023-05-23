@@ -3,8 +3,6 @@ package fr.simplon.titrev3.ControllerClient;
 import fr.simplon.titrev3.Model.Evenement;
 import fr.simplon.titrev3.Model.Participant;
 import fr.simplon.titrev3.Model.ParticipantEvenement;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.security.core.Authentication;
@@ -16,8 +14,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class ParticipantEvenementClientController {
@@ -44,7 +44,7 @@ public class ParticipantEvenementClientController {
             model.addAttribute("participant", participant);
             participantEvenement.setParticipant(participant);
             return "formulaireInscriptionEvenement";
-        }else{
+        } else {
             return "redirect:/InfoParticipant/{username}";
         }
     }
@@ -55,11 +55,20 @@ public class ParticipantEvenementClientController {
         String url = "http://localhost:8083/rest/participantEvenement";
         Participant participant = participantEvenement.getParticipant();
         Evenement evenement = participantEvenement.getEvenement();
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<ParticipantEvenement> request = new HttpEntity<>(participantEvenement, headers);
-        ResponseEntity<ParticipantEvenement> response = restTemplate.postForEntity(url, request, ParticipantEvenement.class);
-        return "redirect:/programmation";
+
+        Long participantId = participant.getId();
+        Long evenementId = evenement.getId();
+        String checkRegistrationUrl = "http://localhost:8083/rest/participantEvenement/checkRegistration?participantId=" + participantId + "&evenementId=" + evenementId;
+        ResponseEntity<Boolean> responseCheck = restTemplate.getForEntity(checkRegistrationUrl, Boolean.class);
+        if (responseCheck.getBody()) {
+            return "redirect:/dejaInscrit";
+        } else {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<ParticipantEvenement> request = new HttpEntity<>(participantEvenement, headers);
+            ResponseEntity<ParticipantEvenement> response = restTemplate.postForEntity(url, request, ParticipantEvenement.class);
+            return "redirect:/programmation";
+        }
     }
 
 
@@ -111,5 +120,10 @@ public class ParticipantEvenementClientController {
         String url="http://localhost:8083/rest/participantEvenement/{id}";
         restTemplate.delete(url, id);
         return "redirect:/";
+    }
+
+    @GetMapping("/dejaInscrit")
+    public String afficherMessageDejaInscrit(Model model) {
+        return "confirmationDejaInscrit";
     }
 }

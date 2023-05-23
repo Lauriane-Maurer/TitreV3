@@ -2,6 +2,7 @@ package fr.simplon.titrev3.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.Cascade;
 
@@ -23,8 +24,10 @@ import java.util.Set;
         @NotNull
         @Column(length = 1000)
         private String description;
+        @Future
         @NotNull
         private LocalDateTime dateDebut;
+        @Future
         @NotNull
         private LocalDateTime dateFin;
         private Integer places_totales;
