@@ -54,7 +54,30 @@ public class ParticipantClientController {
         return "redirect:/programmation";
    }
 
-
+//Formulaire de mise à jour des données du participants
+    @GetMapping("/updateParticipant/{username}")
+    public String displayFormModParticipant(Model model, @PathVariable String username){
+        this.restTemplate = new RestTemplate();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        username = authentication.getName();
+        String url="http://localhost:8083/rest/participants/{username}";
+        ResponseEntity<Participant> response = restTemplate.getForEntity(url, Participant.class, username);
+        Participant participant = response.getBody();
+        model.addAttribute("participant", participant);
+        return "ficheInfoParticipant";
+    }
+    @PostMapping("UpdateInfoParticipant/{username}")
+    public String updateInfo (@ModelAttribute("participant")Participant participant, @PathVariable String username) {
+        this.restTemplate = new RestTemplate();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        username = authentication.getName();
+        String url = "http://localhost:8083/rest/participants/{id}";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Participant> request = new HttpEntity<>(participant, headers);
+        ResponseEntity<Participant> response = restTemplate.exchange(url, HttpMethod.POST, request, Participant.class, username);
+        return "redirect:/";
+    }
 
 
 }

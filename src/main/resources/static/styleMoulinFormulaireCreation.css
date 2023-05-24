@@ -40,11 +40,15 @@ form{
     box-shadow: 0 0 5px rgba(0,0,0,.3);
 }
 
-.form-section p{
+.form-section h5{
     font-size: 12px;
     font-weight: bold;
     text-align: center;
+}
 
+.form-section p{
+    font-size: 8px;
+    margin-bottom: 0;
 }
 
 .form-item{

@@ -37,21 +37,15 @@ public class ParticipantServiceController {
         return repo.save(newParticipant);
     }
 
-    @PostMapping("/rest/participants/{id}")
-    public Participant updateParticipant(@RequestBody Participant newParticipant, @PathVariable Long id) {
-        return repo.findById(id)
-                .map(participant -> {
-                    participant.setPrenom(newParticipant.getPrenom());
-                    participant.setNom(newParticipant.getNom());
-                    participant.setTelephone(newParticipant.getTelephone());
-                    participant.setEmail(newParticipant.getEmail());
-                    participant.setCode_postal(newParticipant.getCode_postal());
-                    return repo.save(participant);
-                })
-                .orElseGet(() -> {
-                    newParticipant.setId(id);
-                    return repo.save(newParticipant);
-                });
+    @PostMapping("/rest/participants/{username}")
+    public Participant updateParticipant(@RequestBody Participant newParticipant, @PathVariable String username) {
+        Participant participant = repo.findByUsername(username);
+            participant.setPrenom(newParticipant.getPrenom());
+            participant.setNom(newParticipant.getNom());
+            participant.setTelephone(newParticipant.getTelephone());
+            participant.setEmail(newParticipant.getEmail());
+            participant.setCode_postal(newParticipant.getCode_postal());
+            return repo.save(participant);
     }
 
 
