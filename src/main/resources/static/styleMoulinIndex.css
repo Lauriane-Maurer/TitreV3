@@ -88,4 +88,12 @@
         width: 90%;
         line-height: 2;
     }
+
+    @media (max-width: 250px) {
+        #moulin-titre-index {
+            font-size: 50px;
+        }
+    }
+
+
 }

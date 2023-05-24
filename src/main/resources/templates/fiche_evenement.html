@@ -54,7 +54,7 @@
                 <h1 th:text="*{evenement.titre}"></h1>
                 <p class="fiche-description" th:text="*{evenement.description}"></p>
                 <p class="fiche-intervenant"> Intervenant.e.s : <span th:text="*{evenement.intervenant}"></span></p>
-                <button class="fiche-bouton"><a th:href="@{/InscriptionParticipant/{eventId}/{username}(eventId=${evenement.id}, username=${#authentication.getName()})}">S'inscrire</a></button>
+                <button class="fiche-bouton" type="button"  th:onclick="|window.location.href= '@{/InscriptionParticipant/{eventId}/{username}(eventId=${evenement.id}, username=${#authentication.getName()})}'|">S'inscrire</button>
             </div>
         </section>
         <section class="fiche-bandeau">

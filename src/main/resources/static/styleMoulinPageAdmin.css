@@ -14,7 +14,7 @@
 .pageAdmin-main{
     display: flex;
     flex-direction: column;
-    margin: 50px 50px;
+    margin: 50px;
     font-family: Arial, sans-serif;
 }
 
@@ -42,3 +42,52 @@
     font-size: 12px;
     font-weight: bold;
 }
+
+
+@media (max-width: 768px) {
+
+    .pageAdmin-header {
+        height: 100px;
+    }
+
+    .pageAdmin-header h1 {
+        margin-top:72px;
+        margin-left: 25px;
+        font-size: 30px;
+    }
+
+    .pageAdmin-main{
+        margin: 20px;
+    }
+
+    .pageAdmin-main p{
+        font-size: 20px;
+    }
+
+    .pageAdmin-choix {
+        margin-left: 5%;
+    }
+
+    .pageAdmin-choix li a {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 250px) {
+
+
+    .pageAdmin-header h1 {
+        margin-top:82px;
+        margin-left: 15px;
+        font-size: 20px;
+    }
+
+    .pageAdmin-main{
+        margin: 10px;
+    }
+
+    .pageAdmin-main p{
+        font-size: 17px;
+    }
+}
+

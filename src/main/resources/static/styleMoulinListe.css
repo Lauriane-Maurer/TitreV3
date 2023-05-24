@@ -14,7 +14,7 @@
 .Liste-main{
     display: flex;
     flex-direction: column;
-    margin: 50px 50px;
+    margin: 50px;
     font-family: Arial, sans-serif;
 }
 
@@ -23,6 +23,20 @@
     font-size: 12px;
     font-weight: bold;
 }
+
+.detailEvenement{
+    line-height: 8px;
+}
+.detailEvenement p{
+    margin-left: 100px;
+    font-size: 10px;
+}
+.detailEvenement span{
+    font-size: 12px;
+    font-weight: bold;
+    color: #0694fb;
+}
+
 
 .Liste-table{
     margin: 20px 100px 50px 100px;
@@ -62,4 +76,31 @@
     color: white;
     font-size: 10px;
     box-shadow: 0 0 5px rgba(0,0,0,.3);
+}
+
+@media (max-width: 768px) {
+
+    .Liste-header {
+        height: 100px;
+    }
+
+    .Liste-header h1 {
+        margin-top:78px;
+        margin-left: 25px;
+        font-size: 25px;
+    }
+
+    .Liste-main{
+        width: 80%;
+        margin: 10px;
+        overflow-x: scroll;
+    }
+
+    .Liste-table{
+        width: 700px;
+        margin: 50px 10px 70px 10px;
+    }
+
+
+
 }

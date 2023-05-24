@@ -41,6 +41,7 @@ public class ParticipantClientController {
         return "formulaireInfoParticipant";
     }
 
+
     @PostMapping("/InfoParticipant")
     public String enregistrerParticipant(@ModelAttribute("participant") Participant participant) {
         this.restTemplate = new RestTemplate();
@@ -53,6 +54,7 @@ public class ParticipantClientController {
         ResponseEntity<Participant> participantResponse = restTemplate.postForEntity(Url, participantRequest, Participant.class);
         return "redirect:/programmation";
    }
+
 
 //Formulaire de mise à jour des données du participants
     @GetMapping("/updateParticipant/{username}")
@@ -70,6 +72,7 @@ public class ParticipantClientController {
             return "redirect:/InfoParticipant/{username}";
         }
     }
+
     @PostMapping("UpdateInfoParticipant/{username}")
     public String updateInfo (@ModelAttribute("participant")Participant participant, @PathVariable String username) {
         this.restTemplate = new RestTemplate();

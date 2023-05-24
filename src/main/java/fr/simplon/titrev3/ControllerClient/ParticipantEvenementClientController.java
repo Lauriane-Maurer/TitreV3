@@ -104,6 +104,16 @@ public class ParticipantEvenementClientController {
     @GetMapping("InscriptionsEvenement/{evenementId}")
     public String afficherParticipantsEvenement(Model model, @PathVariable Long evenementId) {
         this.restTemplate = new RestTemplate();
+            String Evenementurl = "http://localhost:8083/rest/evenements/{id}";
+            ResponseEntity<Evenement> response1 = restTemplate.exchange(
+                Evenementurl,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<Evenement>() {},
+                evenementId
+            );
+            Evenement evenement = response1.getBody();
+            model.addAttribute("evenement", evenement);
 
             String url = "http://localhost:8083/rest/InscritsEvenement/{eventId}";
             ResponseEntity<List<ParticipantEvenement>> response2 = restTemplate.exchange(

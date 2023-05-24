@@ -28,17 +28,17 @@
 
                     <div class="login-form">
                         <input class="login-item" type="password" id="oldPassword" name="oldPassword" placeholder="Old Password" required="">
-                        <div class="alert alert-warning" role="alert" th:errors="*{oldPassword}"></div>
+                        <div class="error"  role="alert" th:errors="*{oldPassword}"></div>
 
                         <input class="login-item" type="password" id="newPassword" name="newPassword"
                                th:field="*{newPassword}" th:value="*{newPassword}"
                                placeholder="New Password"
                                required="">
-                        <div class="alert alert-warning" role="alert" th:errors="*{newPassword}"></div>
+                        <div class="error"  role="alert" th:errors="*{newPassword}"></div>
 
                         <input class="login-item" type="password" id="confirmPassword" name="confirmPassword"
                                placeholder="Confirm" required="">
-                        <div class="alert alert-warning" role="alert" th:errors="*{confirmPassword}"></div>
+                        <div class="error"  role="alert" th:errors="*{confirmPassword}"></div>
 
                         <button class="login-button" type="submit">Modifier</button>
 
