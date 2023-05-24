@@ -63,8 +63,12 @@ public class ParticipantClientController {
         String url="http://localhost:8083/rest/participants/{username}";
         ResponseEntity<Participant> response = restTemplate.getForEntity(url, Participant.class, username);
         Participant participant = response.getBody();
+        if (participant != null) {
         model.addAttribute("participant", participant);
         return "ficheInfoParticipant";
+        }else{
+            return "redirect:/InfoParticipant/{username}";
+        }
     }
     @PostMapping("UpdateInfoParticipant/{username}")
     public String updateInfo (@ModelAttribute("participant")Participant participant, @PathVariable String username) {
