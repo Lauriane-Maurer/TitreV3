@@ -16,19 +16,15 @@ public class CreateUserForm {
     @Size(min=1,max=255)
     private String confirmPassword;
 
-    @NotNull
-    @Size(min=1,max=255)
-    private String firstname;
 
 
     public CreateUserForm() {
     }
 
-    public CreateUserForm(String login, String password, String confirmPassword, String firstname) {
+    public CreateUserForm(String login, String password, String confirmPassword) {
         this.login = login;
         this.password = password;
         this.confirmPassword = confirmPassword;
-        this.firstname = firstname;
     }
 
     public String getLogin() {
@@ -55,11 +51,4 @@ public class CreateUserForm {
         this.confirmPassword = confirmPassword;
     }
 
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
 }
