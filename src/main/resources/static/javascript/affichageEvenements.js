@@ -9,9 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(data => {
             var evenementsHtml = "";
+            var currentDate = new Date();
+
             data.forEach(evenement => {
-                var username = document.getElementById("authName").innerHTML;
-                evenementsHtml += `
+                var dateDebut = new Date(evenement.dateDebut);
+                if (dateDebut > currentDate) {
+                    var username = document.getElementById("authName").innerHTML;
+                    evenementsHtml += `
                     <div class="card">
                         <img src="${evenement.photo}" alt="${evenement.titre}">
                         <div class="card-content">
@@ -22,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                 `;
+                }
             });
             document.getElementById("listings").innerHTML = evenementsHtml;
         })

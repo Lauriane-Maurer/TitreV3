@@ -29,20 +29,28 @@ public class ParticipantEvenementClientController {
         String eventUrl = "http://localhost:8083/rest/evenements/{id}";
         ResponseEntity<Evenement> eventResponse = restTemplate.getForEntity(eventUrl, Evenement.class, eventId);
         Evenement evenement = eventResponse.getBody();
-        model.addAttribute("evenement", evenement);
-        participantEvenement.setEvenement(evenement);
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        username = authentication.getName();
-        String url = "http://localhost:8083/rest/participants/{username}";
-        ResponseEntity<Participant> response = restTemplate.getForEntity(url, Participant.class, username);
-        Participant participant = response.getBody();
-        if (participant != null) {
-            model.addAttribute("participant", participant);
-            participantEvenement.setParticipant(participant);
-            return "formulaireInscriptionEvenement";
-        } else {
-            return "redirect:/InfoParticipant/{username}";
+        if ((evenement.getPlaces_restantes() != null) && (evenement.getPlaces_restantes() != 0) ) {
+            model.addAttribute("evenement", evenement);
+            participantEvenement.setEvenement(evenement);
+
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            username = authentication.getName();
+            String url = "http://localhost:8083/rest/participants/{username}";
+            ResponseEntity<Participant> response = restTemplate.getForEntity(url, Participant.class, username);
+            Participant participant = response.getBody();
+            if (participant != null) {
+                model.addAttribute("participant", participant);
+                participantEvenement.setParticipant(participant);
+                return "formulaireInscriptionEvenement";
+            } else {
+                return "redirect:/InfoParticipant/{username}";
+            }
+        }else {
+            return "/confirmationEvenementComplet";
+        //}else{
+            //Long evenementId = evenement.getId();
+            //return "redirect:/evenements/" + evenementId;
         }
     }
 
@@ -140,4 +148,10 @@ public class ParticipantEvenementClientController {
     public String afficherMessageDejaInscrit(Model model) {
         return "confirmationDejaInscrit";
     }
+
+    @GetMapping("/confirmationEvenementComplet")
+    public String afficherMessageEvenementComplet(Model model) {
+        return "confirmationEvenementComplet";
+    }
+
 }

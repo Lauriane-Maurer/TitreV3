@@ -11,9 +11,8 @@
   </head>
 
   <body>
-
+    <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
     <header class="Liste-header">
-      <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
       <h1>Liste des participants</h1>
     </header>
 
@@ -51,6 +50,11 @@
               <span>h</span>
               <span th:text="${#temporals.format(evenement.dateFin, 'mm')}"></span>
             </span>
+          </p>
+          <br>
+          <p th:if="(${evenement.places_totales} != null)">
+            <p>Places ouvertes : <span th:text="*{evenement.places_totales}"></span></p>
+            <p>Places encore disponibles : <span th:text="*{evenement.places_restantes}"></span></p>
           </p>
       </div>
         <table class="Liste-table">

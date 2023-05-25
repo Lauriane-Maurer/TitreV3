@@ -17,45 +17,46 @@
     <h1>Le Terr(it)oir.e</h1>
 </header>
 
-<main class="territoire-main">
+<main>
+    <div class="territoire-main">
+        <section class="territoire-titre">
+            <h2>ENTRE TERRE ET MER </h2>
+            <h1>A la rencontre des acteurs du Pays d'Iroise</h1>
+        </section>
+        <section class="territoire-texte">
+            <p id="territoire-texte-p1">Situé au nord de Brest, près de Lampaul-Ploudalmézeau, le Moulin s’implente au sein d’une économie locale riche et dynamique. Producteurs, artisans, animateurs de lieu collaboratifs, créateurs d’évènements culturels, coachs, passionné.e.s, ...</p>
+            <p id="territoire-texte-p2">Retrouvez sur la carte tous les acteurs locaux qui font du pays d’Iroise un territoire et un un terroir et à qui le Moulin souhaite donner la parole à travers un programmation d’ateliers, d’animations variées et de conférences ou encore de stages.</p>
+        </section>
+    </div>
 
-    <section class="territoire-texte">
-        <p id="territoire-texte-p1">Situé au nord de Brest, près de Lampaul-Ploudalmézeau, le Moulin s’implente au sein d’une économie locale riche et dynamique. Producteurs, artisans, animateurs de lieu collaboratifs, créateurs d’évènements culturels, coachs, passionné.e.s, ...</p>
-        <p id="territoire-texte-p2">Retrouvez sur la carte tous les acteurs locaux qui font du pays d’Iroise un territoire et un un terroir et à qui le Moulin souhaite donner la parole à travers un programmation d’ateliers, d’animations variées et de conférences ou encore de stages.</p>
-    </section>
+        <section class="territoire-carte">
+            <div id="mapid"></div>
+            <div class="table-container">
+                <table class="tableau">
+                    <thead>
+                    <tr>
+                        <th class="en-tete-tableau sortable">Nom</th>
+                        <th class="en-tete-tableau">Type d'activité</th>
+                        <th class="en-tete-tableau">Code Postal</th>
+                        <th class="en-tete-tableau">Ville</th>
+                        <th class="en-tete-tableau"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="organisme : ${organismes}">
+                        <td class="cellule sortable" th:text="${organisme.libelle}"></td>
+                        <td class="cellule" th:text="${organisme.activite}"></td>
+                        <td class="cellule" th:text="${organisme.code_postal}"></td>
+                        <td class="cellule" th:text="${organisme.ville}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
-    <section class="territoire-carte">
+        </section>
 
-        <div id="mapid"></div>
-
-        <div class="table-container">
-            <table class="tableau">
-                <thead>
-                <tr>
-                    <th class="en-tete-tableau sortable">Nom</th>
-                    <th class="en-tete-tableau">Type d'activité</th>
-                    <th class="en-tete-tableau">Adresse</th>
-                    <th class="en-tete-tableau">Code Postal</th>
-                    <th class="en-tete-tableau">Ville</th>
-                    <th class="en-tete-tableau"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="organisme : ${organismes}">
-                    <td class="cellule sortable" th:text="${organisme.libelle}"></td>
-                    <td class="cellule" th:text="${organisme.activite}"></td>
-                    <td class="cellule" th:text="${organisme.adresse}"></td>
-                    <td class="cellule" th:text="${organisme.code_postal}"></td>
-                    <td class="cellule" th:text="${organisme.ville}"></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-    </section>
 
 </main>
-
 </body>
 
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>

@@ -20,6 +20,7 @@
         <table class="Liste-table">
             <thead>
             <tr>
+                <th class="colonne-statut">Statut</th>
                 <th class="colonne-titre">Titre</th>
                 <th class="colonne-date">Date de début</th>
                 <th class="colonne-date">Date de fin</th>
@@ -30,6 +31,8 @@
             </thead>
             <tbody>
             <tr th:each="evenement : ${evenements}">
+                <td><img class="image-statut" th:src="@{${evenement.dateDebut < #temporals.createNow()} ? '/photos/closed.png' : '/photos/open.png'}">
+                </td>
                 <td class="cellule" th:text="${evenement.titre}"></td>
                 <td class="cellule" th:text="${evenement.dateDebut}"></td>
                 <td class="cellule" th:text="${evenement.dateFin}"></td>
