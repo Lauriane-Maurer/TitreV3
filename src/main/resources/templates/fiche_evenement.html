@@ -59,10 +59,11 @@
         </section>
         <section class="fiche-bandeau">
             <div class="fiche-chiffres">
-                <p>Nombre de places ouvertes: <span  th:text="*{evenement.places_totales}"></span></p>
-                <p>Nombre de places restantes: <span  th:text="*{evenement.places_restantes}"></span></p>
+                <p th:if="${evenement.limite_places == true}" >Nombre de places ouvertes: <span  th:text="*{evenement.places_totales}"></span></p>
+                <p th:if="${evenement.limite_places == true}">Nombre de places restantes: <span  th:text="*{evenement.places_restantes}"></span></p>
                 <br>
-                <p>Tarif / personne: <span  th:text="*{evenement.tarif}"></span> €</p>
+                <p th:if="${evenement.limite_places == true}">Tarif / personne: <span  th:text="*{evenement.tarif}"></span> €</p>
+                <p th:if="${evenement.limite_places != true}">Entrée libre</p>
             </div>
             <div class="fiche-contact">
                 <div class="fiche-contact-info">
