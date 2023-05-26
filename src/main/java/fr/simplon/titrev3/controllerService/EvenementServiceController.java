@@ -67,6 +67,7 @@ public class EvenementServiceController {
                     evenement.setIntervenant(newEvent.getIntervenant());
                     evenement.setPhoto(newEvent.getPhoto());
                     evenement.setParticipantEvenements(newEvent.getParticipantEvenements());
+                    evenement.setOrganismes(newEvent.getOrganismes());
                     return repo.save(evenement);
                 })
                 .orElseGet(() -> {

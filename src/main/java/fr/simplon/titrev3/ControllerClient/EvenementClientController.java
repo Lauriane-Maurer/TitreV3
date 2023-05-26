@@ -1,6 +1,7 @@
 package fr.simplon.titrev3.ControllerClient;
 
 import fr.simplon.titrev3.Model.Evenement;
+import fr.simplon.titrev3.Model.Organisme;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
@@ -23,9 +24,7 @@ public class EvenementClientController {
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Evenement>>(){});
-
         List<Evenement> evenements = response.getBody();
-
         model.addAttribute("evenements", evenements);
         return "listeEvenementsAdmin";
     }
@@ -70,8 +69,18 @@ public class EvenementClientController {
 
     @GetMapping("/creationEvenement")
     public String displayEventForm(Model model) {
+        this.restTemplate = new RestTemplate();
         Evenement evenement = new Evenement();
         model.addAttribute("evenement", evenement);
+        String url = "http://localhost:8083/rest/organismes";
+        ResponseEntity<List<Organisme>> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Organisme>>() {
+                });
+        List<Organisme> organismes = response.getBody();
+        model.addAttribute("organismes", organismes);
         return "formulaireEvenement";
     }
 
@@ -94,6 +103,15 @@ public class EvenementClientController {
         ResponseEntity<Evenement> response = restTemplate.getForEntity(url, Evenement.class, id);
         Evenement evenement = response.getBody();
         model.addAttribute("evenement", evenement);
+        String url2 = "http://localhost:8083/rest/organismes";
+        ResponseEntity<List<Organisme>> response2 = restTemplate.exchange(
+                url2,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Organisme>>() {
+                });
+        List<Organisme> organismes = response2.getBody();
+        model.addAttribute("organismes", organismes);
         return "formulaireModifEvenement";
     }
 

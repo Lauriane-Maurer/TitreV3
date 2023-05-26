@@ -26,7 +26,16 @@
                         <input class="form-item" type="text" th:field="*{type}" required/>
                         <input class="form-item" type="text" th:field="*{titre}" required/>
                         <input class="form-item" type="text" th:field="*{description}" required/>
-                        <input class="form-item" type="text" th:field="*{intervenant}" />
+                        <select class="form-item-select" id="photo" name="photo" th:field="*{photo}">
+                            <option value="/photos/beachyoga.PNG">Beach Yoga</option>
+                            <option value="/photos/cuisine1.jpg">Cuisine 1</option>
+                            <option value="/photos/dome.PNG">Dome</option>
+                            <option value="/photos/fresquebiodiversite.PNG">fresquebiodiversite</option>
+                            <option value="/photos/marchedulittorale.PNG">marchedulittorale</option>
+                            <option value="/photos/moulindenuit.PNG">moulindenuit</option>
+                            <option value="/photos/Photostage1.PNG">Photostage1</option>
+                            <option value="/photos/schemamoulin.PNG">schemamoulin</option>
+                        </select>
                     </div>
 
                     <div class="form-section">
@@ -51,17 +60,14 @@
                     </div>
 
                     <div class="form-section">
-                        <h5>Photo</h5>
-                        <select class="form-item-select" id="photo" name="photo" th:field="*{photo}">
-                            <option value="/photos/beachyoga.PNG">Beach Yoga</option>
-                            <option value="/photos/cuisine1.jpg">Cuisine 1</option>
-                            <option value="/photos/dome.PNG">Dome</option>
-                            <option value="/photos/fresquebiodiversite.PNG">fresquebiodiversite</option>
-                            <option value="/photos/marchedulittorale.PNG">marchedulittorale</option>
-                            <option value="/photos/moulindenuit.PNG">moulindenuit</option>
-                            <option value="/photos/Photostage1.PNG">Photostage1</option>
-                            <option value="/photos/schemamoulin.PNG">schemamoulin</option>
-                        </select>
+                        <h5>Organisateur.s</h5>
+                        <input class="form-item" type="text" th:field="*{intervenant}" />
+                        <div class="form-item checkbox">
+                            <div th:each="organisme : ${organismes}">
+                                <input type="checkbox" th:field="*{organismes}" th:value="${organisme.id}" />
+                                <span th:text="${organisme.libelle}"></span>
+                            </div>
+                        </div>
                     </div>
 
                     <input type="hidden" th:field="*{id}" />

@@ -69,6 +69,7 @@ public class OrganismeServiceController {
                     organisme.setUrl(newOrganization.getUrl());
                     organisme.setLatitude(newOrganization.getLatitude());
                     organisme.setLongitude(newOrganization.getLongitude());
+                    organisme.setEvenements(newOrganization.getEvenements());
                     return repo.save(organisme);
                 })
                 .orElseGet(() -> {

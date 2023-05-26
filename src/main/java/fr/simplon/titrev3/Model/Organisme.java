@@ -2,6 +2,8 @@ package fr.simplon.titrev3.Model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="organismes")
 public class Organisme {
@@ -18,10 +20,16 @@ public class Organisme {
     private Double latitude;
     private Double longitude;
 
+    @ManyToMany
+    @JoinTable(name = "evenement_organisme",
+            joinColumns = @JoinColumn(name = "evenement_id"),
+            inverseJoinColumns = @JoinColumn(name = "organisme_id"))
+    private List<Evenement> evenements;
+
     public Organisme() {
     }
 
-    public Organisme(String libelle, String activite, String adresse, String ville, int code_postal, String url, Double latitude, Double longitude) {
+    public Organisme(String libelle, String activite, String adresse, String ville, int code_postal, String url, Double latitude, Double longitude, List<Evenement> evenements) {
         this.libelle = libelle;
         this.activite = activite;
         this.adresse = adresse;
@@ -30,6 +38,7 @@ public class Organisme {
         this.url = url;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.evenements = evenements;
     }
 
     public Long getId() {
@@ -102,5 +111,13 @@ public class Organisme {
 
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
+    }
+
+    public List<Evenement> getEvenements() {
+        return evenements;
+    }
+
+    public void setEvenements(List<Evenement> evenements) {
+        this.evenements = evenements;
     }
 }

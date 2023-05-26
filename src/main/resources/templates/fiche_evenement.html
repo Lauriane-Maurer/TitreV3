@@ -54,6 +54,11 @@
                 <h1 th:text="*{evenement.titre}"></h1>
                 <p class="fiche-description" th:text="*{evenement.description}"></p>
                 <p class="fiche-intervenant"> Intervenant.e.s : <span th:text="*{evenement.intervenant}"></span></p>
+                <p class="fiche-intervenant">Structures organisatrices :
+                    <span th:each="organisme, iterStat : ${evenement.organismes}">
+                        <span th:text="${organisme.libelle}"></span>
+                        <span th:if="${!iterStat.last}">, </span>
+                    </span>
                 <button class="fiche-bouton" type="button" th:onclick="|window.location.href= '@{/InscriptionParticipant/{eventId}/{username}(eventId=${evenement.id}, username=${#authentication.getName()})}'|">S'inscrire</button>
             </div>
         </section>

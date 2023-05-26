@@ -43,10 +43,16 @@ import java.util.Set;
         @Cascade(org.hibernate.annotations.CascadeType.DELETE)
         private List<ParticipantEvenement> participantEvenements;
 
+        @ManyToMany
+        @JoinTable(name = "evenement_organisme",
+                joinColumns = @JoinColumn(name = "evenement_id"),
+                inverseJoinColumns = @JoinColumn(name = "organisme_id"))
+        private List<Organisme> organismes;
+
     public Evenement() {
     }
 
-    public Evenement(String type, String titre, String description, LocalDateTime dateDebut, LocalDateTime dateFin, boolean limite_places, Integer places_totales, Integer places_restantes, Double tarif, String intervenant, String photo, List<ParticipantEvenement> participantEvenements) {
+    public Evenement(String type, String titre, String description, LocalDateTime dateDebut, LocalDateTime dateFin, boolean limite_places, Integer places_totales, Integer places_restantes, Double tarif, String intervenant, String photo, List<ParticipantEvenement> participantEvenements, List<Organisme> organismes) {
         this.type = type;
         this.titre = titre;
         this.description = description;
@@ -59,6 +65,7 @@ import java.util.Set;
         this.intervenant = intervenant;
         this.photo = photo;
         this.participantEvenements = participantEvenements;
+        this.organismes = organismes;
     }
 
     public Long getId() {
@@ -163,6 +170,14 @@ import java.util.Set;
 
     public void setParticipantEvenements(List<ParticipantEvenement> participantEvenements) {
         this.participantEvenements = participantEvenements;
+    }
+
+    public List<Organisme> getOrganismes() {
+        return organismes;
+    }
+
+    public void setOrganismes(List<Organisme> organismes) {
+        this.organismes = organismes;
     }
 
     @PrePersist
