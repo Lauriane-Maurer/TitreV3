@@ -3,3 +3,11 @@ function confirmDeletion(id) {
         window.location.href = '/participantEvenement/delete/' + id;
     }
 }
+
+function incrementEvent(eventId) {
+    var incrementUrl = "/rest/IncrementerPlacesRestantes/" + eventId;
+    $.post(incrementUrl, function () {
+    });
+}
+
+

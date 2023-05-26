@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 public class ParticipantEvenementServiceController {
@@ -27,6 +28,10 @@ public class ParticipantEvenementServiceController {
         return repo.findAll();
     }
 
+    @GetMapping(path = "/rest/participantEvenementId/{id}")
+    public ParticipantEvenement getParticipantEventDetails(@PathVariable Long id)throws NoSuchElementException {
+        return repo.findById(id).orElseThrow();
+    }
 
     @PostMapping(path="/rest/participantEvenement")
     public ParticipantEvenement addParticipantEvent(@RequestBody ParticipantEvenement newParticipantEvent) {

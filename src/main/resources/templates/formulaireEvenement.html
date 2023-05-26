@@ -32,7 +32,8 @@
                             <option value="Rencontre">Rencontre</option>
                         </select>
                         <input class="form-item" type="text" th:field="*{titre}" placeholder="Titre" required/>
-                        <input class="form-item" type="text" th:field="*{description}" placeholder="Descritpion" required/>
+                        <input class="form-item" type="text" th:field="*{description}" placeholder="Description" required/>
+                        <input class="form-item" type="text" th:field="*{intervenant}" placeholder="Intervenant.e.s"/>
                     </div>
 
                     <div class="form-section">
@@ -43,9 +44,13 @@
 
                     <div class="form-section">
                         <h5>Autres informations</h5>
-                        <input class="form-item" type="number" th:field="*{places_totales}" placeholder="Nb_places ouvertes" />
+                        <p>Nombre limité de places :</p>
+                        <select id="limite_places_select" class="form-item-select" th:field="*{limite_places}" onchange="togglePlacesTotales()">
+                            <option value="1" th:selected="${evenement.limite_places} == true">OUI</option>
+                            <option value="0" th:selected="${evenement.limite_places} == false">NON</option>
+                        </select>
+                        <input id="places_totales_section" class="form-item" type="number" th:field="*{places_totales}" placeholder="Nb_places ouvertes" />
                         <input class="form-item" type="number" th:field="*{tarif}" placeholder="Tarif"  />
-                        <input class="form-item" type="text" th:field="*{intervenant}" placeholder="Intervenant.e.s"/>
                     </div>
 
                     <div class="form-section">
@@ -72,4 +77,5 @@
             </form>
         </main>
     </body>
+    <script src="/Javascript/limitePlacesEvenement.js"></script>
 </html>

@@ -26,6 +26,7 @@
                         <input class="form-item" type="text" th:field="*{type}" required/>
                         <input class="form-item" type="text" th:field="*{titre}" required/>
                         <input class="form-item" type="text" th:field="*{description}" required/>
+                        <input class="form-item" type="text" th:field="*{intervenant}" />
                     </div>
 
                     <div class="form-section">
@@ -36,14 +37,17 @@
 
                     <div class="form-section">
                         <h5>Autres informations</h5>
-                        <p>Nombre de places ouvertes</p>
-                        <input class="form-item" type="number" th:field="*{places_totales}" />
-                        <p>Nombre de places restantes</p>
-                        <input class="form-item" type="number" th:field="*{places_restantes}" />
+                        <p>Nombre limité de places :</p>
+                        <select id="limite_places_select" class="form-item-select" th:field="*{limite_places}" onchange="togglePlacesTotales()">
+                            <option value="1" th:selected="${evenement.limite_places} == true">OUI</option>
+                            <option value="0" th:selected="${evenement.limite_places} == false">NON</option>
+                        </select>
+                        <p id="places_totales_section-p">Nombre de places ouvertes</p>
+                        <input  id="places_totales_section" class="form-item" type="number" th:field="*{places_totales}" />
+                        <p id="places_restantes_section-p">Nombre de places restantes</p>
+                        <input  id="places_restantes_section" class="form-item" type="number" th:field="*{places_restantes}" />
                         <p>Tarif</p>
                         <input class="form-item" type="number" th:field="*{tarif}" />
-                        <p>Intervenant.e.s</p>
-                        <input class="form-item" type="text" th:field="*{intervenant}" />
                     </div>
 
                     <div class="form-section">
@@ -68,4 +72,5 @@
             </form>
         </main>
     </body>
+    <script src="/Javascript/limitePlacesEvenement.js"></script>
 </html>

@@ -30,6 +30,8 @@ import java.util.Set;
         @Future
         @NotNull
         private LocalDateTime dateFin;
+
+        private boolean limite_places;
         private Integer places_totales;
         private Integer places_restantes;
         private Double tarif;
@@ -44,12 +46,13 @@ import java.util.Set;
     public Evenement() {
     }
 
-    public Evenement(String type, String titre, String description, LocalDateTime dateDebut, LocalDateTime dateFin, Integer places_totales, Integer places_restantes, Double tarif, String intervenant, String photo, List<ParticipantEvenement> participantEvenements) {
+    public Evenement(String type, String titre, String description, LocalDateTime dateDebut, LocalDateTime dateFin, boolean limite_places, Integer places_totales, Integer places_restantes, Double tarif, String intervenant, String photo, List<ParticipantEvenement> participantEvenements) {
         this.type = type;
         this.titre = titre;
         this.description = description;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
+        this.limite_places = limite_places;
         this.places_totales = places_totales;
         this.places_restantes = places_restantes;
         this.tarif = tarif;
@@ -104,6 +107,14 @@ import java.util.Set;
 
     public void setDateFin(LocalDateTime dateFin) {
         this.dateFin = dateFin;
+    }
+
+    public boolean isLimite_places() {
+        return limite_places;
+    }
+
+    public void setLimite_places(boolean limite_places) {
+        this.limite_places = limite_places;
     }
 
     public Integer getPlaces_totales() {
@@ -164,6 +175,12 @@ import java.util.Set;
     public void decrementerPlacesRestantes() {
         if (this.places_restantes != null) {
             this.places_restantes--;
+        }
+    }
+
+    public void incrementerPlacesRestantes() {
+        if (this.places_restantes != null) {
+            this.places_restantes++;
         }
     }
 

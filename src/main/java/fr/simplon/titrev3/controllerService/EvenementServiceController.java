@@ -60,6 +60,7 @@ public class EvenementServiceController {
                     evenement.setDescription(newEvent.getDescription());
                     evenement.setDateDebut(newEvent.getDateDebut());
                     evenement.setDateFin(newEvent.getDateFin());
+                    evenement.setLimite_places(newEvent.isLimite_places());
                     evenement.setPlaces_totales(newEvent.getPlaces_totales());
                     evenement.setPlaces_restantes(newEvent.getPlaces_restantes());
                     evenement.setTarif(newEvent.getTarif());
@@ -73,6 +74,17 @@ public class EvenementServiceController {
                     return repo.save(newEvent);
                 });
     }
+
+    @PostMapping("/rest/IncrementerPlacesRestantes/{id}")
+    public Evenement incrementerEvent(@PathVariable Long id) {
+        return repo.findById(id)
+                .map(evenement -> {
+                    evenement.incrementerPlacesRestantes();
+                    return repo.save(evenement);
+                })
+                .orElse(null);
+    }
+
 
     @PostMapping("/rest/DecremeneterPlaces/{id}")
     public Evenement decremeneterEvent(@RequestBody Evenement newEvent, @PathVariable Long id) {

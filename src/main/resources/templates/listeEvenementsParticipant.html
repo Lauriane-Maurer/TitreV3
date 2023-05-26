@@ -38,7 +38,7 @@
                             <td class="cellule" th:text="${participantEvenement.getEvenement().getDateDebut()}"></td>
                             <td class="cellule" th:text="${participantEvenement.getEvenement().getDateFin()}"></td>
                             <td>
-                                <button class="bouton-action" type="button" id="delete-button" th:onclick="|confirmDeletion(${participantEvenement.id})|">Annuler</button>
+                                <button class="bouton-action" type="button" id="delete-button" th:onclick="|confirmDeletion(${participantEvenement.id}); incrementEvent(${participantEvenement.getEvenement().getId()}); |">Annuler</button>
                             </td>
                         </tr>
                     </th:block>
