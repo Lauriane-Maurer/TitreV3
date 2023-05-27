@@ -44,7 +44,7 @@
 
 
 .Liste-table{
-    margin: 20px 100px 50px 100px;
+    margin: 20px 50px 50px 50px;
 }
 
 .Liste-table thead{
@@ -52,6 +52,10 @@
     text-align: left;
     border-bottom: solid #ffba07 3px;
     font-size: 12px;
+}
+
+.colonne{
+    width: auto;
 }
 
 .colonne-statut{
@@ -67,7 +71,7 @@
 }
 
 .colonne-description{
-    width: 45%;
+    width: 40%;
 }
 
 .cellule {

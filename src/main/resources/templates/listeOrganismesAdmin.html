@@ -20,10 +20,11 @@
         <table class="Liste-table">
             <thead>
             <tr>
-                <th class="colonne-titre">Libellé</th>
-                <th class="colonne-autre">Type d'activité</th>
-                <th class="colonne-autre">Code Postale</th>
-                <th class="colonne-autre">Ville</th>
+                <th class="colonne">Libellé</th>
+                <th class="colonne">Type d'activité</th>
+                <th class="colonne-description">Description</th>
+                <th class="colonne">CP</th>
+                <th class="colonne">Ville</th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -33,6 +34,7 @@
             <tr th:each="organisme : ${organismes}">
                 <td class="cellule" th:text="${organisme.libelle}"></td>
                 <td class="cellule" th:text="${organisme.activite}"></td>
+                <td class="cellule" th:text="${organisme.description}"></td>
                 <td class="cellule" th:text="${organisme.code_postal}"></td>
                 <td class="cellule" th:text="${organisme.ville}"></td>
                 <td><button type="button" class="bouton-action" th:onclick="|window.location.href='@{/getOrganization/{id}(id=${organisme.id})}'|">Modifier</button></td>

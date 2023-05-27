@@ -63,6 +63,7 @@ public class OrganismeServiceController {
                 .map(organisme -> {
                     organisme.setLibelle(newOrganization.getLibelle());
                     organisme.setActivite(newOrganization.getActivite());
+                    organisme.setDescription(newOrganization.getDescription());
                     organisme.setAdresse(newOrganization.getAdresse());
                     organisme.setVille(newOrganization.getVille());
                     organisme.setCode_postal(newOrganization.getCode_postal());

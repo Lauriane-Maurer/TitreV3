@@ -13,6 +13,7 @@ public class Organisme {
     private Long id;
     private String libelle;
     private String activite;
+    private String description;
     private String adresse;
     private String ville;
     private int code_postal;
@@ -29,9 +30,10 @@ public class Organisme {
     public Organisme() {
     }
 
-    public Organisme(String libelle, String activite, String adresse, String ville, int code_postal, String url, Double latitude, Double longitude, List<Evenement> evenements) {
+    public Organisme(String libelle, String activite, String description, String adresse, String ville, int code_postal, String url, Double latitude, Double longitude, List<Evenement> evenements) {
         this.libelle = libelle;
         this.activite = activite;
+        this.description = description;
         this.adresse = adresse;
         this.ville = ville;
         this.code_postal = code_postal;
@@ -63,6 +65,14 @@ public class Organisme {
 
     public void setActivite(String activite) {
         this.activite = activite;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getAdresse() {
