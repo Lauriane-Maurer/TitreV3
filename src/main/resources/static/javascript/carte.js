@@ -169,9 +169,9 @@ function filterOrganizations() {
 
     for (let i = 0; i < rows.length; i++) {
         let nameCol = rows[i].querySelector('td:nth-child(1)');
-        let activityCol = rows[i].querySelector('td:nth-child(2)');
+        let activityCol = rows[i].querySelector('td:nth-child(3)');
         let cityCol = rows[i].querySelector('td:nth-child(5)');
-        if (nameCol || cityCol) {
+        if (nameCol || activityCol || cityCol) {
             let name = nameCol.textContent.toUpperCase();
             let activity = activityCol.textContent.toUpperCase();
             let city = cityCol.textContent.toUpperCase();
