@@ -23,6 +23,7 @@
             <table class="Liste-table">
                 <thead>
                     <tr>
+                        <th class="colonne-statut">Statut</th>
                         <th class="colonne">Titre</th>
                         <th class="colonne-description">Description</th>
                         <th class="colonne">Date et heure de debut</th>
@@ -33,6 +34,7 @@
                 <tbody>
                     <th:block th:each="participantEvenement : ${participantEvenements}">
                         <tr>
+                            <td><img class="image-statut" th:src="@{${participantEvenement.getEvenement().getDateDebut() < #temporals.createNow()} ? '/photos/closed.png' : '/photos/open.png'}"></td>
                             <td class="cellule" th:text="${participantEvenement.getEvenement().getTitre()}"></td>
                             <td class="cellule" th:text="${participantEvenement.getEvenement().getDescription()}"></td>
                             <td class="cellule" th:text="${participantEvenement.getEvenement().getDateDebut()}"></td>

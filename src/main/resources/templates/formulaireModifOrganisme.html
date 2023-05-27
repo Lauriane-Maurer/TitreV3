@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/styleMoulin.css">
+  <link rel="stylesheet" href="/styleMoulinNavbar.css">
+  <link rel="stylesheet" href="/styleMoulinFormulaireCreation.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+  <title>Ajout organisme</title>
+</head>
+
+<body>
+
+<header class="formulaireCreation-header">
+  <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+  <h1>Ajout d'un organisme partenaire</h1>
+</header>
+
+<main>
+  <form th:action="@{/updateOrganization/{id}(id=${organisme.id})}" th:object="${organisme}" method="post" >
+    <p class="formulaireCreation-introduction">Cliquez sur la carte pour localiser l'organisme : </p>
+    <div id="mapid"></div>
+    <p class="formulaireCreation-introduction">Merci de compléter les informations suivantes:</p>
+    <div class="formulaireCreation-informations">
+
+      <div class="form-section">
+        <h5>Présentation de l'organisme</h5>
+        <input class="form-item" type="text" th:field="*{libelle}" placeholder="Libellé" required/>
+        <select class="form-item-select" type="text" th:field="*{activite}" placeholder="Type d'activité" required/>
+        <option value="Agriculture">Agriculture</option>
+        <option value="Artisanat">Artisanat</option>
+        <option value="Animations culturelles">Animations culturelles</option>
+        <option value="Sport & Bien-être">Sport & Bien-être</option>
+        <option value="Environnement">Environnement</option>
+        <option value="Lieu_Collaboratif">Lieu Collaboratif</option>
+        <option value="Autre">Autre</option>
+        </select>
+        <input class="form-item" type="text" th:field="*{url}" placeholder="Site internet"/>
+      </div>
+
+      <div class="form-section">
+        <h5>Localisation</h5>
+        <input class="form-item" type="text" th:field="*{adresse}" placeholder="Adresse" required/>
+        <input class="form-item" type="text" th:field="*{ville}" placeholder="Ville" required/>
+        <input class="form-item" type="number" th:field="*{code_postal}" placeholder="Code postal" required/>
+        <input class="form-item" type="number" th:field="*{latitude}" step="any" placeholder="Latitude"/>
+        <input class="form-item" type="number" th:field="*{longitude}" step="any" placeholder="Longitude"/>
+      </div>
+    </div>
+    <input class="bouton-creation" type="submit" value="Enregistrer"/>
+  </form>
+</main>
+
+</body>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/Javascript/ajoutOrganisme.js"></script>
+
+</html>

@@ -57,7 +57,7 @@ public class OrganismeServiceController {
     }
 
 
-    @PutMapping("/rest/organismes/{id}")
+    @PutMapping("/rest/updateOrganization/{id}")
     public Organisme updateOrganization(@RequestBody Organisme newOrganization, @PathVariable Long id) {
         return repo.findById(id)
                 .map(organisme -> {

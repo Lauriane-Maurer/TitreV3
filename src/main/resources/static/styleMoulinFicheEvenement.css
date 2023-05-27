@@ -13,6 +13,8 @@
 }
 
 .fiche-texte{
+    display: flex;
+    flex-direction: column;
     width:60%;
     height: auto;
     margin-top: 70px;
@@ -36,7 +38,7 @@
 }
 
 .fiche-description{
-    margin-top: 10px;
+    margin-top: 5px;
     padding: 20px 70px;
     text-align: justify;
     font-size: 11px;
@@ -44,20 +46,24 @@
 }
 
 .fiche-intervenant{
-    margin-top: 10px;
-    padding: 10px 70px;
+    margin-top: 5px;
+    padding: 5px 70px;
     text-align: justify;
     font-size: 11px;
     font-weight: bold;
     line-height: 20px;
 }
 
+.fiche-intervenant span{
+    font-weight: lighter;
+}
+
 .fiche-bouton{
     width: 100px;
     padding: 10px;
-    margin-top: 30px;
+    margin-top: 10px;
     margin-left: 70px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     background-color: #0694fb;
     box-shadow: 0 0 5px rgba(0,0,0,.3);
     color: white;

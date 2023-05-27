@@ -45,12 +45,12 @@
 
 .Liste-table{
     margin: 20px 100px 50px 100px;
-    border: none;
 }
 
 .Liste-table thead{
     height: 70px;
-    background-color: #eeeeed;
+    text-align: left;
+    border-bottom: solid #ffba07 3px;
     font-size: 12px;
 }
 
@@ -62,12 +62,12 @@
     width: 35%;
 }
 
-.colonne-date{
+.colonne-autre{
     width: 20%;
 }
 
 .colonne-description{
-    width: 50%;
+    width: 45%;
 }
 
 .cellule {

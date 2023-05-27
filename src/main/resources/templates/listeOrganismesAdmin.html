@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styleMoulin.css">
+    <link rel="stylesheet" href="/styleMoulinNavbar.css">
+    <link rel="stylesheet" href="/styleMoulinListe.css">
+    <title>Title</title>
+</head>
+
+<body>
+<div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+<header class="Liste-header">
+    <h1>Gestion des organismes partenaires</h1>
+</header>
+
+<main class="Liste-main">
+    <div>
+        <table class="Liste-table">
+            <thead>
+            <tr>
+                <th class="colonne-titre">Libellé</th>
+                <th class="colonne-autre">Type d'activité</th>
+                <th class="colonne-autre">Code Postale</th>
+                <th class="colonne-autre">Ville</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="organisme : ${organismes}">
+                <td class="cellule" th:text="${organisme.libelle}"></td>
+                <td class="cellule" th:text="${organisme.activite}"></td>
+                <td class="cellule" th:text="${organisme.code_postal}"></td>
+                <td class="cellule" th:text="${organisme.ville}"></td>
+                <td><button type="button" class="bouton-action" th:onclick="|window.location.href='@{/getOrganization/{id}(id=${organisme.id})}'|">Modifier</button></td>
+                <td><button type="button" class="bouton-action" th:onclick="|window.location.href='@{/organismes/delete/{id}(id=${organisme.id})}'|">Supprimer</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

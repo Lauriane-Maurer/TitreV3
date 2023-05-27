@@ -47,3 +47,106 @@ fetch("/api/organismes")
         });
     })
     .catch(error => console.error(error));
+
+
+//-----------------------------------------------------------------------------------------------------//
+
+
+/**
+ * Adds the ability to sort organizations by name when the "Organizattion name" column header is clicked.
+ */
+const nomHeader = document.querySelector(".en-tete-tableau:nth-child(1)");
+
+// Add a click event listener to the header of the "Organization name" column.
+nomHeader.addEventListener("click", function () {
+    const table = document.querySelector(".tableau");
+    const tbody = table.querySelector("tbody");
+    const rows = Array.from(tbody.querySelectorAll("tr"));
+
+    // Sorting of the data according to the name of the festival.
+    rows.sort(function (a, b) {
+        const aNom = a.querySelector(".cellule:nth-child(1)").innerText;
+        const bNom = b.querySelector(".cellule:nth-child(1)").innerText;
+
+        return aNom.localeCompare(bNom);
+    });
+
+    // Reverse the order if the user has already sorted in ascending order.
+    if (nomHeader.dataset.sort === "asc") {
+        rows.reverse();
+        nomHeader.dataset.sort = "desc";
+    } else {
+        nomHeader.dataset.sort = "asc";
+    }
+
+    // Update the table with the sorted data.
+    rows.forEach(row => tbody.appendChild(row));
+});
+
+
+//-----------------------------------------------------------------------------------------------------//
+
+
+/**
+ * Adds the ability to sort organizations by activity when the "Organizattion Activity" column header is clicked.
+ */
+const activiteHeader = document.querySelector(".en-tete-tableau:nth-child(2)");
+
+// Add a click event listener to the header of the "Organization name" column.
+activiteHeader.addEventListener("click", function () {
+    const table = document.querySelector(".tableau");
+    const tbody = table.querySelector("tbody");
+    const rows = Array.from(tbody.querySelectorAll("tr"));
+
+    // Sorting of the data according to the name of the festival.
+    rows.sort(function (a, b) {
+        const aActivite = a.querySelector(".cellule:nth-child(2)").innerText;
+        const bActivite = b.querySelector(".cellule:nth-child(2)").innerText;
+
+        return aActivite.localeCompare(bActivite);
+    });
+
+    // Reverse the order if the user has already sorted in ascending order.
+    if (activiteHeader.dataset.sort === "asc") {
+        rows.reverse();
+        activiteHeader.dataset.sort = "desc";
+    } else {
+        activiteHeader.dataset.sort = "asc";
+    }
+
+    // Update the table with the sorted data.
+    rows.forEach(row => tbody.appendChild(row));
+});
+//-----------------------------------------------------------------------------------------------------//
+
+
+/**
+ * Adds the ability to sort organizations by town when the "Organizattion town" column header is clicked.
+ */
+const villeHeader = document.querySelector(".en-tete-tableau:nth-child(4)");
+
+// Add a click event listener to the header of the "Organization name" column.
+villeHeader.addEventListener("click", function () {
+    const table = document.querySelector(".tableau");
+    const tbody = table.querySelector("tbody");
+    const rows = Array.from(tbody.querySelectorAll("tr"));
+
+    // Sorting of the data according to the name of the festival.
+    rows.sort(function (a, b) {
+        const aVille = a.querySelector(".cellule:nth-child(4)").innerText;
+        const bVille = b.querySelector(".cellule:nth-child(4)").innerText;
+
+        return aVille.localeCompare(bVille);
+    });
+
+    // Reverse the order if the user has already sorted in ascending order.
+    if (villeHeader.dataset.sort === "asc") {
+        rows.reverse();
+        villeHeader.dataset.sort = "desc";
+    } else {
+        villeHeader.dataset.sort = "asc";
+    }
+
+    // Update the table with the sorted data.
+    rows.forEach(row => tbody.appendChild(row));
+});
