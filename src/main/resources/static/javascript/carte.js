@@ -117,6 +117,8 @@ activiteHeader.addEventListener("click", function () {
     // Update the table with the sorted data.
     rows.forEach(row => tbody.appendChild(row));
 });
+
+
 //-----------------------------------------------------------------------------------------------------//
 
 
@@ -149,4 +151,39 @@ villeHeader.addEventListener("click", function () {
 
     // Update the table with the sorted data.
     rows.forEach(row => tbody.appendChild(row));
+});
+
+
+//-----------------------------------------------------------------------------------------------------//
+
+/**
+ * Search an organizationby name, town, or activity.
+ */
+function filterOrganizations() {
+
+    let input = document.getElementById('search-input');
+    let filter = input.value.toUpperCase();
+    let table = document.querySelector('table');
+    let rows = table.querySelectorAll('tr');
+
+
+    for (let i = 0; i < rows.length; i++) {
+        let nameCol = rows[i].querySelector('td:nth-child(1)');
+        let activityCol = rows[i].querySelector('td:nth-child(2)');
+        let cityCol = rows[i].querySelector('td:nth-child(5)');
+        if (nameCol || cityCol) {
+            let name = nameCol.textContent.toUpperCase();
+            let activity = activityCol.textContent.toUpperCase();
+            let city = cityCol.textContent.toUpperCase();
+            if (name.includes(filter) || city.includes(filter) || activity.includes(filter))  {
+                rows[i].style.display = '';
+            } else {
+                rows[i].style.display = 'none';
+            }
+        }
+    }
+}
+
+input.addEventListener('keyup', function () {
+    filterTable();
 });

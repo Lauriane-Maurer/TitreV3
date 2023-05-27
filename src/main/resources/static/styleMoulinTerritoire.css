@@ -60,6 +60,14 @@
     margin: 20px 30px 100px 30px;
 }
 
+.barre-recherche{
+    display: flex;
+    justify-content: right;
+    margin-right: 60px;
+    font-size: 10px;
+}
+
+
 
 /* Style for the positioning of the map */
 #mapid{
