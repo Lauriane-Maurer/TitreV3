@@ -139,17 +139,9 @@ public class ParticipantEvenementClientController {
     @GetMapping("participantEvenement/delete/{id}")
     public String delParticipantEvent(Model model, @PathVariable Long id){
         this.restTemplate = new RestTemplate();
-        //String url1="http://localhost:8083/rest/participantEvenementId/{id}";
-        //ResponseEntity<ParticipantEvenement> response = restTemplate.getForEntity(url1, ParticipantEvenement.class, id);
-        //ParticipantEvenement participantEvenement = response.getBody();
-        //Long eventId = participantEvenement.getEvenement().getId();
 
         String url2="http://localhost:8083/rest/participantEvenement/{id}";
         restTemplate.delete(url2, id);
-
-        //UriComponentsBuilder builder = UriComponentsBuilder.fromPath("/getEventPlacesRestantes/{eventId}");
-        //String redirectUrl = builder.buildAndExpand(eventId).toUriString();
-        //return "redirect:" + redirectUrl;
 
         return "redirect:/programmation";
     }

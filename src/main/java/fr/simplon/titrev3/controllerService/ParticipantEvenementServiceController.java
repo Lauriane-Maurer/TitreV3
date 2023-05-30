@@ -16,6 +16,8 @@ public class ParticipantEvenementServiceController {
     @Autowired
     private ParticipantEvenementRepository repo;
 
+    @Autowired
+    private EvenementRepository evenementRepo;
 
     @Autowired
     public ParticipantEvenementServiceController(ParticipantEvenementRepository fr) {
@@ -51,8 +53,21 @@ public class ParticipantEvenementServiceController {
 
     @DeleteMapping("/rest/participantEvenement/{id}")
     public void deleteParticipantEvent(@PathVariable Long id) {
+
+
+        ParticipantEvenement participantEvenement = repo.findById(id).orElse(null);
+        if (participantEvenement != null) {
+            Evenement evenement = participantEvenement.getEvenement();
+
+            // Incrémentez le nombre de places restantes de l'événement
+            if (evenement != null) {
+                evenement.incrementerPlacesRestantes();
+                evenementRepo.save(evenement);
+            }
+        }
         repo.deleteById(id);
     }
+
 
 
     @GetMapping("/rest/participantEvenement/checkRegistration")

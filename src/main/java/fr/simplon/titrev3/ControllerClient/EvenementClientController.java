@@ -127,29 +127,6 @@ public class EvenementClientController {
         return "redirect:/admin/gestionnaireAdmin";
     }
 
-    @GetMapping("/getEventPlacesRestantes/{eventId}")
-    public String redirectToUpdateEventPlacesRestantes(Model model, @PathVariable Long eventId) {
-        this.restTemplate = new RestTemplate();
-        String url = "http://localhost:8083/rest/evenements/{id}";
-        ResponseEntity<Evenement> response = restTemplate.getForEntity(url, Evenement.class, eventId);
-        Evenement evenement = response.getBody();
-        model.addAttribute("evenement", evenement);
-        return "redirect:/UpdateEventPlacesRestantes/{eventId}";
-    }
-
-    @PostMapping("UpdateEventPlacesRestantes/{eventId}")
-    public String updateEventPlacesRestantes(@ModelAttribute("evenement") Evenement evenement, @PathVariable Long eventId) {
-        this.restTemplate = new RestTemplate();
-        String incrementationPlacesRestantesUrl = "http://localhost:8083/rest/IncrementerPlacesRestantes/{id}";
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<Evenement> request = new HttpEntity<>(evenement, headers);
-        ResponseEntity<Evenement> response = restTemplate.exchange(incrementationPlacesRestantesUrl, HttpMethod.POST, request, Evenement.class, eventId);
-
-        return "redirect:/";
-    }
-
-
 
     @GetMapping ("evenements/delete/{id}")
     public String delEvent(Model model, @PathVariable Long id){
