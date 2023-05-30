@@ -117,15 +117,15 @@ public class UserController {
             @ModelAttribute("user") @Valid ChangePasswordForm user,
             BindingResult validation,
             Model model) {
-        if (principal == null) {
-            return "redirect:/confirmationChangementMdp";
-        }
         UserDetails userDetails = userDetailsManager.loadUserByUsername(principal.getName());
         changePassword(userDetails, user, validation);
         if (validation.hasErrors()) {
             return "modificationMdp";
+        } else
+        {
+            model.addAttribute("confirmationMessage", "Votre mot de passe a été modifié avec succès !");
+            return "confirmation";
         }
-        return "redirect:/confirmationChangementMdp";
     }
 
     private void changePassword(UserDetails userDetails, ChangePasswordForm form, BindingResult validation) {
@@ -146,9 +146,6 @@ public class UserController {
         }
     }
 
-    @GetMapping("/confirmationChangementMdp")
-    public String confirmationChangePassword()
-    {
-        return "confirmationChangementMdp";
-    }
+
+
 }

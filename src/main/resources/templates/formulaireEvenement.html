@@ -32,7 +32,7 @@
                             <option value="Rencontre">Rencontre</option>
                         </select>
                         <input class="form-item" type="text" th:field="*{titre}" placeholder="Titre" required/>
-                        <input class="form-item" type="text" th:field="*{description}" placeholder="Description" required/>
+                        <textarea rows="4" cols="50" class="form-item" type="text" th:field="*{description}" placeholder="Description" required/></textarea>
                         <select class="form-item-select" id="photo" name="photo" th:field="*{photo}">
                             <option value="/photos/beachyoga.PNG">Beach Yoga</option>
                             <option value="/photos/cuisine1.jpg">Cuisine 1</option>
@@ -50,7 +50,9 @@
                     <div class="form-section">
                         <h5>Date & heure de l'évènement</h5>
                         <input class="form-item" type="datetime-local" th:field="*{dateDebut}" placeholder="Date/heure de début" required/>
+                        <span class="error" th:if="${#fields.hasErrors('dateDebut')}" th:errors="*{dateDebut}"></span>
                         <input class="form-item" type="datetime-local" th:field="*{dateFin}" placeholder="Date/heure de fin" required/>
+                        <span class="error" th:if="${#fields.hasErrors('dateFin')}" th:errors="*{dateFin}"></span>
                     </div>
 
                     <div class="form-section">

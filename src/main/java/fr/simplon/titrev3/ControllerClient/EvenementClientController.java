@@ -2,10 +2,12 @@ package fr.simplon.titrev3.ControllerClient;
 
 import fr.simplon.titrev3.Model.Evenement;
 import fr.simplon.titrev3.Model.Organisme;
+import jakarta.validation.Valid;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import java.util.List;
@@ -16,7 +18,7 @@ public class EvenementClientController {
     private RestTemplate restTemplate;
 
     @GetMapping("/admin/listeEvenements")
-    public String afficherListeEvenementAdmin(Model model){
+    public String displayEventsManagementList(Model model){
         this.restTemplate = new RestTemplate();
         String url ="http://localhost:8083/rest/evenements";
         ResponseEntity<List<Evenement>> response=restTemplate.exchange(
@@ -85,7 +87,11 @@ public class EvenementClientController {
     }
 
     @PostMapping("/creationEvenement")
-    public String addEvent(@ModelAttribute("evenement") Evenement evenement) {
+    public String addEvent(@ModelAttribute("evenement") @Valid Evenement evenement, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            // Gérer les erreurs de validation ici
+            return "formulaireEvenement";
+        } else {
         this.restTemplate = new RestTemplate();
         String url = "http://localhost:8083/rest/evenements";
         HttpHeaders headers = new HttpHeaders();
@@ -94,10 +100,11 @@ public class EvenementClientController {
         ResponseEntity<Evenement> response = restTemplate.postForEntity(url, request, Evenement.class);
         return "redirect:/programmation";
     }
+    }
 
 
-    @GetMapping("/UpdateEvent/{id}")
-    public String displayFormModEvent(Model model, @PathVariable Long id){
+    @GetMapping("/formulaireModificationEvenement/{id}")
+    public String displayUpdateEventForm(Model model, @PathVariable Long id){
         this.restTemplate = new RestTemplate();
         String url="http://localhost:8083/rest/evenements/{id}";
         ResponseEntity<Evenement> response = restTemplate.getForEntity(url, Evenement.class, id);
@@ -116,20 +123,27 @@ public class EvenementClientController {
     }
 
 
-    @PostMapping("UpdateEvent/{id}")
-    public String updateEvent (@ModelAttribute("evenement")Evenement evenement, @PathVariable Long id) {
-        this.restTemplate = new RestTemplate();
-        String url = "http://localhost:8083/rest/UpdateEvent/{id}";
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<Evenement> request = new HttpEntity<>(evenement, headers);
-        ResponseEntity<Evenement> response = restTemplate.exchange(url, HttpMethod.POST, request, Evenement.class, id);
-        return "redirect:/admin/gestionnaireAdmin";
+    @PostMapping("ModificationEvenement/{id}")
+    public String updateEvent (@ModelAttribute("evenement") @Valid Evenement evenement, BindingResult bindingResult, @PathVariable Long id, Model model) {
+        if (bindingResult.hasErrors()) {
+            // Gérer les erreurs de validation ici
+            return "formulaireModifEvenement";
+        } else {
+            this.restTemplate = new RestTemplate();
+            String url = "http://localhost:8083/rest/ModificationEvenement/{id}";
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<Evenement> request = new HttpEntity<>(evenement, headers);
+            ResponseEntity<Evenement> response = restTemplate.exchange(url, HttpMethod.POST, request, Evenement.class, id);
+
+            model.addAttribute("confirmationMessage", "Les mises à jour de l'évènement ont bien été enregistrées.");
+            return "confirmation";
+        }
     }
 
 
     @GetMapping ("evenements/delete/{id}")
-    public String delEvent(Model model, @PathVariable Long id){
+    public String deleteEvent(Model model, @PathVariable Long id){
         this.restTemplate = new RestTemplate();
         String url="http://localhost:8083/rest/evenements/{id}";
         restTemplate.delete(url, id);

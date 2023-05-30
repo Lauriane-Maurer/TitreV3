@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class ParticipantEvenementClientController {
     private RestTemplate restTemplate;
 
     @GetMapping("/InscriptionParticipant/{eventId}/{username}")
-    public String afficherInscriptionEvenementForm(Model model, @PathVariable Long eventId, @PathVariable String username) {
+    public String afficherFormulaireInscriptionParticipant(Model model, @PathVariable Long eventId, @PathVariable String username) {
         ParticipantEvenement participantEvenement = new ParticipantEvenement();
         model.addAttribute("participantEvenement", participantEvenement);
         this.restTemplate = new RestTemplate();
@@ -46,15 +45,13 @@ public class ParticipantEvenementClientController {
                 return "redirect:/InfoParticipant/{username}";
             }
         }else {
-            return "/confirmationEvenementComplet";
-        //}else{
-            //Long evenementId = evenement.getId();
-            //return "redirect:/evenements/" + evenementId;
+            model.addAttribute("confirmationMessage", "Cet évènement est déjà complet.");
+            return "confirmation";
         }
     }
 
     @PostMapping("/InscriptionParticipant")
-    public String addParticipantEvent(@ModelAttribute("participantEvenement") ParticipantEvenement participantEvenement) {
+    public String inscriptionParticipantEvenement(@ModelAttribute("participantEvenement") ParticipantEvenement participantEvenement, Model model) {
         this.restTemplate = new RestTemplate();
         String url = "http://localhost:8083/rest/participantEvenement";
         Participant participant = participantEvenement.getParticipant();
@@ -65,7 +62,8 @@ public class ParticipantEvenementClientController {
         String checkRegistrationUrl = "http://localhost:8083/rest/participantEvenement/checkRegistration?participantId=" + participantId + "&evenementId=" + evenementId;
         ResponseEntity<Boolean> responseCheck = restTemplate.getForEntity(checkRegistrationUrl, Boolean.class);
         if (responseCheck.getBody()) {
-            return "redirect:/dejaInscrit";
+            model.addAttribute("confirmationMessage", "Vous êtes déjà inscrit à cet évènement.");
+            return "confirmation";
         } else {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -78,7 +76,8 @@ public class ParticipantEvenementClientController {
             HttpEntity<Evenement> request2 = new HttpEntity<>(evenement, headers);
             ResponseEntity<Evenement> response2 = restTemplate.exchange(decrementationPlacesRestantesUrl, HttpMethod.POST, request, Evenement.class, evenementId);
 
-            return "redirect:/programmation";
+            model.addAttribute("confirmationMessage", "Votre inscription a bien été enregistrée. Retrouvez la liste des évènements auxquels vous êtes inscrit.e en cliquant sur 'Mes évènements' dans la barre de navigation.");
+            return "confirmation";
         }
     }
 
@@ -137,7 +136,7 @@ public class ParticipantEvenementClientController {
 
 
     @GetMapping("participantEvenement/delete/{id}")
-    public String delParticipantEvent(Model model, @PathVariable Long id){
+    public String supprimerParticipantEvenement(Model model, @PathVariable Long id){
         this.restTemplate = new RestTemplate();
 
         String url2="http://localhost:8083/rest/participantEvenement/{id}";
@@ -146,15 +145,5 @@ public class ParticipantEvenementClientController {
         return "redirect:/programmation";
     }
 
-
-    @GetMapping("/dejaInscrit")
-    public String afficherMessageDejaInscrit(Model model) {
-        return "confirmationDejaInscrit";
-    }
-
-    @GetMapping("/confirmationEvenementComplet")
-    public String afficherMessageEvenementComplet(Model model) {
-        return "confirmationEvenementComplet";
-    }
 
 }

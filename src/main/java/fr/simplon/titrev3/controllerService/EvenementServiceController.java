@@ -51,8 +51,8 @@ public class EvenementServiceController {
     }
 
 
-    @PostMapping("/rest/UpdateEvent/{id}")
-    public Evenement updateEvent(@RequestBody Evenement newEvent, @PathVariable Long id) {
+    @PostMapping("/rest/ModificationEvenement/{id}")
+    public Evenement modificationEvenement(@RequestBody Evenement newEvent, @PathVariable Long id) {
         return repo.findById(id)
                 .map(evenement -> {
                     evenement.setType(newEvent.getType());

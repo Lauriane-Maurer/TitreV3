@@ -8,7 +8,6 @@ import org.hibernate.annotations.Cascade;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 @Entity
     @Table(name="evenements")
@@ -24,10 +23,10 @@ import java.util.Set;
         @NotNull
         @Column(length = 1000)
         private String description;
-        @Future
+        @Future(message = "La date de début doit être dans le futur")
         @NotNull
         private LocalDateTime dateDebut;
-        @Future
+        @Future(message = "La date de fin doit être dans le futur")
         @NotNull
         private LocalDateTime dateFin;
 

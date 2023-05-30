@@ -17,7 +17,7 @@
         </header>
 
         <main>
-            <form class="formulaireCreation-form" th:action="@{/UpdateEvent/{id}(id=${evenement.id})}" th:object="${evenement}" method="post" >
+            <form class="formulaireCreation-form" th:action="@{/ModificationEvenement/{id}(id=${evenement.id})}" th:object="${evenement}" method="post" >
                 <p class="formulaireCreation-introduction"></p>
                 <div class="formulaireCreation-informations">
 
@@ -25,7 +25,7 @@
                         <h5>Présentation de l'évènement</h5>
                         <input class="form-item" type="text" th:field="*{type}" required/>
                         <input class="form-item" type="text" th:field="*{titre}" required/>
-                        <input class="form-item" type="text" th:field="*{description}" required/>
+                        <textarea rows="4" cols="50" class="form-item" type="text" th:field="*{description}" required/></textarea>
                         <select class="form-item-select" id="photo" name="photo" th:field="*{photo}">
                             <option value="/photos/beachyoga.PNG">Beach Yoga</option>
                             <option value="/photos/cuisine1.jpg">Cuisine 1</option>
@@ -35,13 +35,16 @@
                             <option value="/photos/moulindenuit.PNG">moulindenuit</option>
                             <option value="/photos/Photostage1.PNG">Photostage1</option>
                             <option value="/photos/schemamoulin.PNG">schemamoulin</option>
+                            <option value="/photos/atelierphoto.PNG">atelierphoto</option>
                         </select>
                     </div>
 
                     <div class="form-section">
                         <h5>Date & heure de l'évènement</h5>
                         <input class="form-item" type="text" th:field="*{dateDebut}" required/>
+                        <span class="error" th:if="${#fields.hasErrors('dateDebut')}" th:errors="*{dateDebut}"></span>
                         <input class="form-item" type="text" th:field="*{dateFin}" required/>
+                        <span class="error" th:if="${#fields.hasErrors('dateFin')}" th:errors="*{dateFin}"></span>
                     </div>
 
                     <div class="form-section">

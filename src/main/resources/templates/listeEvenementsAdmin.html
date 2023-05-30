@@ -37,7 +37,7 @@
                 <td class="cellule" th:text="${evenement.dateDebut}"></td>
                 <td class="cellule" th:text="${evenement.dateFin}"></td>
                 <td><button type="button" class="bouton-action" th:onclick="|window.location.href= '@{/InscriptionsEvenement/{evenementId}(evenementId=${evenement.getId()})}'|">Participants</button></td>
-                <td><button type="button" class="bouton-action" th:onclick="|window.location.href='@{/UpdateEvent/{id}(id=${evenement.id})}'|">Modifier</button></td>
+                <td><button type="button" class="bouton-action" th:onclick="|window.location.href='@{/formulaireModificationEvenement/{id}(id=${evenement.id})}'|">Modifier</button></td>
                 <td><button type="button" class="bouton-action" th:onclick="|window.location.href='@{/evenements/delete/{id}(id=${evenement.id})}'|">Supprimer</button></td>
             </tr>
             </tbody>

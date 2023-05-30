@@ -1,12 +1,8 @@
 package fr.simplon.titrev3.ControllerClient;
 
-import fr.simplon.titrev3.Model.Evenement;
 import fr.simplon.titrev3.Model.Organisme;
-import fr.simplon.titrev3.Model.Participant;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -65,7 +61,7 @@ public class OrganismeClientController {
     }
 
     @PostMapping("updateOrganization/{id}")
-    public String updateOrganization (@ModelAttribute("organisme")Organisme organisme, @PathVariable Long id) {
+    public String updateOrganization (@ModelAttribute("organisme") Organisme organisme, @PathVariable Long id) {
         this.restTemplate = new RestTemplate();
         String url = "http://localhost:8083/rest/updateOrganization/{id}";
         HttpHeaders headers = new HttpHeaders();
